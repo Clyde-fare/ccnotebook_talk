@@ -1,0 +1,10 @@
+mem=8000MB
+%chk=/scratch/Kr_mp2_dimer_9.chk
+%nproc=8
+#p gfprint MP2/6-31G*
+
+Gaussian input prepared by ASE
+
+0 1
+Kr                0.0000000000        0.0000000000        0.0000000000
+Kr                0.0000000000        0.0000000000        2.7500000000
