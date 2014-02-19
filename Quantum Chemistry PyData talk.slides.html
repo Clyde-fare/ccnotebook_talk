@@ -1969,7 +1969,7 @@ and on for 100+ more lines</code></pre>
 </div><div class="fragment">
     
 <div class="text_cell_render border-box-sizing rendered_html">
-<iframe src=http://www.gaussian.com/g_tech/g_ur/l_keywords09.htm width=750 height=350 seamless align="center"></iframe>
+<iframe src=http://www.gaussian.com/g_tech/g_ur/l_keywords09.htm width=700 height=700 seamless align="center"></iframe>
 
 </div>
     </div></section><section>
@@ -1986,6 +1986,9 @@ and on for 100+ more lines</code></pre>
 <p>Even with suitable training in extreme yet still popular cases e.g. calculations involving many atoms that involve combining parameterised forcefields with a quantum core, requires a complicated workflow encompassing several different programs both both gui and console based, and additional hand editing files.</p>
 <p>Prepartion a single calculation can take days or even weeks.</p>
 <img src='oniom_flow_chart_.jpg'></img>
+</div></section><section>
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Once constructed computational jobs are submitted to a pbs queue via a temporary job script.</p>
 </div></section>
     </section><section>
     <section>
@@ -2533,9 +2536,8 @@ S</code></pre>
 <div class="fragment">
     
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Legacy quantum chemistry codes dominate quantum cehmical research due to large amount research and development poured into them and hence the wide range of methods they have available.</p>
+<p>Legacy quantum chemistry codes dominate quantum chemical research due to the large amount research and development poured into them and hence the wide range of methods they have available.</p>
 <p>However individual research workflows using them are less efficient than they might be.</p>
-<p>Despite progress there is still an unnecessary technical barrier to performing calculations.</p>
 <p>Exchange of information in the scientific literature is limited by both the culture and the toolset commonly used.</p>
 <p>Involvement of quantum chemistry in interdisciplionary fields is slowed by the lack of a quantum chemical api.</p>
 </div>
@@ -2566,15 +2568,19 @@ S</code></pre>
     
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>ASE</strong></p>
-<p>ASE is an Atomistic Simulation Environment written in the Python programming language with the aim of setting up, steering, and analyzing atomistic simulations.</p>
-<p>S. R. Bahn and K. W. Jacobsen An object-oriented scripting interface to a legacy electronic structure code, Comput. Sci. Eng., Vol. 4, 56-66, 2002</p>
+<p>ASE is an Atomistic Simulation Environment written in the Python programming language with the aim of setting up, steering, and analyzing atomistic simulations. (S. R. Bahn and K. W. Jacobsen An object-oriented scripting interface to a legacy electronic structure code, Comput. Sci. Eng., Vol. 4, 56-66, 2002)</p>
+</div>
+    </div><div class="fragment">
+    
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The Atoms object is a collection of atoms. Here is how to define a N2 molecule by directly specifying the position of two nitrogen atoms:</p>
 </div>
     </div><div class="fragment">
     
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">
-In&nbsp;[]:
+In&nbsp;[1]:
 </div>
 <div class="input_area box-flex1">
 <div class="highlight"><pre><span class="kn">from</span> <span class="nn">ase</span> <span class="kn">import</span> <span class="n">Atoms</span>
@@ -2588,15 +2594,19 @@ In&nbsp;[]:
 </div>
     </div><div class="fragment">
     
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>You can also build crystals using, for example, the lattice module which returns Atoms objects corresponding to common crystal structures. Let us make a Cu (111) surface:</p>
+</div>
+    </div><div class="fragment">
+    
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">
 In&nbsp;[]:
 </div>
 <div class="input_area box-flex1">
-<div class="highlight"><pre><span class="kn">from</span> <span class="nn">ase.calculators.emt</span> <span class="kn">import</span> <span class="n">EMT</span>
-<span class="n">slab</span><span class="o">.</span><span class="n">set_calculator</span><span class="p">(</span><span class="n">EMT</span><span class="p">())</span>
-<span class="n">molecule</span><span class="o">.</span><span class="n">set_calculator</span><span class="p">(</span><span class="n">EMT</span><span class="p">())</span>
+<div class="highlight"><pre><span class="kn">from</span> <span class="nn">ase.lattice.surface</span> <span class="kn">import</span> <span class="n">fcc111</span>
+<span class="n">slab</span> <span class="o">=</span> <span class="n">fcc111</span><span class="p">(</span><span class="s">&#39;Cu&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="n">vacuum</span><span class="o">=</span><span class="mf">10.0</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -2604,6 +2614,103 @@ In&nbsp;[]:
 
 </div>
     </div><div class="fragment">
+    
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Finally can read in atoms from a file containing the structure:</p>
+</div>
+    </div><div class="fragment">
+    
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight"><pre><span class="kn">from</span> <span class="nn">ase.io</span> <span class="kn">import</span> <span class="n">read</span>
+<span class="n">molecule</span> <span class="o">=</span> <span class="n">read</span><span class="p">(</span><span class="s">&#39;N2.xyz&#39;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+
+</div>
+    </div></section><section>
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We can attach a calculator to the previously created Atoms objects:</p>
+</div><div class="fragment">
+    
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[8]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight"><pre><span class="kn">from</span> <span class="nn">ase.calculators.emt</span> <span class="kn">import</span> <span class="n">EMT</span>
+<span class="n">molecule</span><span class="o">.</span><span class="n">set_calculator</span><span class="p">(</span><span class="n">EMT</span><span class="p">())</span>
+<span class="n">molecule</span><span class="o">.</span><span class="n">calc</span><span class="o">.</span><span class="n">implemented_properties</span>
+</pre></div>
+
+</div>
+</div>
+
+<div class="vbox output_wrapper">
+<div class="output vbox">
+
+
+<div class="hbox output_area"><div class="prompt output_prompt">
+    Out[8]:</div>
+<div class="box-flex1 output_subarea output_pyout">
+
+
+<pre>
+[&apos;energy&apos;, &apos;forces&apos;]
+</pre>
+
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    </div><div class="fragment">
+    
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[11]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight"><pre><span class="n">molecule</span><span class="o">.</span><span class="n">get_potential_energy</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+
+<div class="vbox output_wrapper">
+<div class="output vbox">
+
+
+<div class="hbox output_area"><div class="prompt output_prompt">
+    Out[11]:</div>
+<div class="box-flex1 output_subarea output_pyout">
+
+
+<pre>
+0.44034325572345945
+</pre>
+
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    </div></section><section>
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>ASE's philosophy is to construct small scripts that make use of the calculators to compute energies and forces and use ASE's internal optimisors to compute geometries, or perform dynamics making use of the energies and forces:</p>
+</div><div class="fragment">
     
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
@@ -2664,29 +2771,27 @@ BFGSLineSearch:   2[  4]  17:19:55       11.625878       0.0409
 </div>
 
 </div>
-    </div></section><section>
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>ASE offers partial wrapping of the input of ab initio quantum chemical packages. Philosophy is to allow multiple distinct packages to be used to compute energies, and gradients, and some other basic properties often used in conjunction with ASE's optimisation routines.</p>
-<p>Workflow is production of a script making use of ASE's machinary. Script is either run locally or submitted to a computing cluster.</p>
-</div></section>
+    </div></section>
     </section><section>
     <section>
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>cclib</strong></p>
 <p>A parsing library for quantum chemical output files by Noel O'Boyle, Adam Tenderholt, Karol Langner and others.</p>
 <p>N. M. O'Boyle, A. L. Tenderholt, K. M. Langner, cclib: a library for package-independent computational chemistry algorithms, J. Comp. Chem. 29 (5), pp. 839-845, 2008 (DOI).</p>
-</div></section><section>
+</div><div class="fragment">
+    
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">
-In&nbsp;[31]:
+In&nbsp;[42]:
 </div>
 <div class="input_area box-flex1">
-<div class="highlight"><pre><span class="kn">from</span> <span class="nn">cclib.parser</span> <span class="kn">import</span> <span class="n">ADF</span><span class="p">,</span> <span class="n">GAMESS</span><span class="p">,</span> <span class="n">GAMESSUK</span><span class="p">,</span> <span class="n">Gaussian</span><span class="p">,</span> <span class="n">Molpro</span><span class="p">,</span> <span class="n">Jaguar</span>
-<span class="n">myfile</span> <span class="o">=</span> <span class="n">Gaussian</span><span class="p">(</span><span class="s">&quot;triang_graphene.log&quot;</span><span class="p">)</span>
+<div class="highlight"><pre><span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">from</span> <span class="nn">cclib.parser</span> <span class="kn">import</span> <span class="n">ADF</span><span class="p">,</span> <span class="n">GAMESS</span><span class="p">,</span> <span class="n">GAMESSUK</span><span class="p">,</span> <span class="n">Gaussian</span><span class="p">,</span> <span class="n">Molpro</span><span class="p">,</span> <span class="n">Jaguar</span>
+<span class="n">myfile</span> <span class="o">=</span> <span class="n">Gaussian</span><span class="p">(</span><span class="s">&quot;triang_graphene.log&quot;</span><span class="p">,</span> <span class="n">loglevel</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">CRITICAL</span><span class="p">)</span>
 <span class="n">raw_data</span> <span class="o">=</span> <span class="n">myfile</span><span class="o">.</span><span class="n">parse</span><span class="p">()</span>
 <span class="n">data</span> <span class="o">=</span> <span class="n">raw_data</span><span class="o">.</span><span class="n">getattributes</span><span class="p">()</span>
-<span class="n">data</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
 </pre></div>
 
 </div>
@@ -2699,65 +2804,25 @@ In&nbsp;[31]:
 <div class="hbox output_area"><div class="prompt"></div>
 <div class="box-flex1 output_subarea output_stream output_stdout">
 <pre>
-[Gaussian triang_graphene.log INFO] Creating attribute charge: 0
-[Gaussian triang_graphene.log INFO] Creating attribute mult: 1
-[Gaussian triang_graphene.log INFO] Creating attribute natom: 34
-[Gaussian triang_graphene.log INFO] Creating attribute atommasses[]
-[Gaussian triang_graphene.log INFO] Creating attribute atomnos[]
-[Gaussian triang_graphene.log INFO] Creating attribute atomcoords[]
-[Gaussian triang_graphene.log INFO] Creating attribute nbasis: 354
-[Gaussian triang_graphene.log INFO] Creating attribute nmo: 354
-[Gaussian triang_graphene.log INFO] Creating attribute scftargets[]
-[Gaussian triang_graphene.log INFO] Creating attribute scfvalues[]
-[Gaussian triang_graphene.log INFO] Creating attribute scfenergies[]
-[Gaussian triang_graphene.log INFO] Creating attribute mosyms[]
-[Gaussian triang_graphene.log INFO] Creating attribute homos[]
-[Gaussian triang_graphene.log INFO] Creating attribute moenergies[]
-[Gaussian triang_graphene.log INFO] Creating attribute atomcharges: {}
-[Gaussian triang_graphene.log INFO] Creating attribute coreelectrons[]
+[&apos;moenergies&apos;, &apos;coreelectrons&apos;, &apos;atomnos&apos;, &apos;atomcoords&apos;, &apos;scfvalues&apos;, &apos;scfenergies&apos;, &apos;atommasses&apos;, &apos;charge&apos;, &apos;homos&apos;, &apos;scftargets&apos;, &apos;nbasis&apos;, &apos;natom&apos;, &apos;nmo&apos;, &apos;mosyms&apos;, &apos;atomcharges&apos;, &apos;mult&apos;]
 
 </pre>
 </div>
 </div>
 
-<div class="hbox output_area"><div class="prompt output_prompt">
-    Out[31]:</div>
-<div class="box-flex1 output_subarea output_pyout">
-
-
-<pre>
-[&apos;moenergies&apos;,
- &apos;coreelectrons&apos;,
- &apos;atomnos&apos;,
- &apos;atomcoords&apos;,
- &apos;scfvalues&apos;,
- &apos;scfenergies&apos;,
- &apos;atommasses&apos;,
- &apos;charge&apos;,
- &apos;homos&apos;,
- &apos;scftargets&apos;,
- &apos;nbasis&apos;,
- &apos;natom&apos;,
- &apos;nmo&apos;,
- &apos;mosyms&apos;,
- &apos;atomcharges&apos;,
- &apos;mult&apos;]
-</pre>
-
 </div>
 </div>
 
 </div>
-</div>
-
-</div></section><section>
+    </div><div class="fragment">
+    
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">
-In&nbsp;[35]:
+In&nbsp;[44]:
 </div>
 <div class="input_area box-flex1">
-<div class="highlight"><pre><span class="n">data</span><span class="p">[</span><span class="s">&#39;scfvalues&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">:</span><span class="mi">30</span><span class="p">]</span>
+<div class="highlight"><pre><span class="n">data</span><span class="p">[</span><span class="s">&#39;scfenergies&#39;</span><span class="p">]</span>
 </pre></div>
 
 </div>
@@ -2768,41 +2833,12 @@ In&nbsp;[35]:
 
 
 <div class="hbox output_area"><div class="prompt output_prompt">
-    Out[35]:</div>
+    Out[44]:</div>
 <div class="box-flex1 output_subarea output_pyout">
 
 
 <pre>
-array([[  6.90000000e-03,   1.80000000e-01,   1.00000000e+00],
-       [  4.06000000e-03,   1.22000000e-01,  -1.37000000e-01],
-       [  3.90000000e-03,   1.79000000e-01,   5.51000000e-02],
-       [  1.88000000e-03,   5.51000000e-02,   3.03000000e-01],
-       [  2.94000000e-03,   1.15000000e-01,  -5.27000000e-01],
-       [  2.90000000e-03,   9.66000000e-02,  -5.38000000e-03],
-       [  2.13000000e-03,   6.95000000e-02,  -5.40000000e-02],
-       [  2.80000000e-03,   9.27000000e-02,   1.75000000e-02],
-       [  2.21000000e-03,   7.05000000e-02,   6.87000000e-03],
-       [  3.47000000e-03,   2.01000000e-01,   1.99000000e-04],
-       [  2.16000000e-03,   6.48000000e-02,  -2.22000000e-02],
-       [  2.02000000e-03,   6.90000000e-02,   5.59000000e-02],
-       [  2.55000000e-03,   8.08000000e-02,  -7.20000000e-03],
-       [  1.97000000e-03,   7.25000000e-02,  -4.37000000e-02],
-       [  1.96000000e-04,   8.05000000e-03,   1.41000000e-02],
-       [  2.20000000e-03,   7.16000000e-02,  -5.66000000e-03],
-       [  5.22000000e-04,   1.94000000e-02,  -2.24000000e-02],
-       [  2.37000000e-03,   8.03000000e-02,   3.76000000e-04],
-       [  2.50000000e-04,   8.08000000e-03,   1.53000000e-02],
-       [  5.93000000e-05,   1.88000000e-03,   4.13000000e-03],
-       [  5.69000000e-05,   2.01000000e-03,  -8.60000000e-04],
-       [  2.52000000e-03,   9.31000000e-02,   1.27000000e-03],
-       [  3.23000000e-04,   9.89000000e-03,   8.24000000e-02],
-       [  3.98000000e-04,   1.39000000e-02,  -5.45000000e-02],
-       [  2.41000000e-04,   7.75000000e-03,  -1.16000000e-02],
-       [  2.70000000e-03,   8.55000000e-02,  -2.72000000e-03],
-       [  2.51000000e-03,   7.81000000e-02,  -3.64000000e-02],
-       [  2.42000000e-03,   7.66000000e-02,   3.69000000e-02],
-       [  2.11000000e-03,   7.07000000e-02,  -3.83000000e-02],
-       [  2.88000000e-03,   9.15000000e-02,   1.94000000e-02]])
+array([-23006.96138889, -23008.77352765])
 </pre>
 
 </div>
@@ -2811,22 +2847,42 @@ array([[  6.90000000e-03,   1.80000000e-01,   1.00000000e+00],
 </div>
 </div>
 
-</div></section><section>
+</div>
+    </div></section><section>
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Molmod</strong></p>
-<p>Molecular modelling toolkit offering topological analysis of molecules and an fchk parser:</p>
+<p>Molecular modelling toolkit offer definition of a molecule like the ASE except in the form of a Molecule class:</p>
 </div><div class="fragment">
     
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">
-In&nbsp;[40]:
+In&nbsp;[78]:
 </div>
 <div class="input_area box-flex1">
-<div class="highlight"><pre><span class="kn">from</span> <span class="nn">molmod.io</span> <span class="kn">import</span> <span class="n">FCHKFile</span>
+<div class="highlight"><pre><span class="kn">from</span> <span class="nn">molmod</span> <span class="kn">import</span> <span class="n">Molecule</span>
+<span class="n">molecule</span> <span class="o">=</span> <span class="n">Molecule</span><span class="o">.</span><span class="n">from_file</span><span class="p">(</span><span class="s">&quot;triang_graphene.xyz&quot;</span><span class="p">)</span>
+</pre></div>
 
-<span class="n">fchk_parser</span><span class="o">=</span><span class="n">FCHKFile</span><span class="p">(</span><span class="s">&#39;triang_graphene.fchk&#39;</span><span class="p">)</span>
-<span class="n">fchk_parser</span><span class="o">.</span><span class="n">fields</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+</div>
+</div>
+
+</div>
+    </div><div class="fragment">
+    
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>But focus here is on computation on manipulation and analysis of the data. E.g. can compute a molecular graph specifying the bonds present:</p>
+</div>
+    </div><div class="fragment">
+    
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[18]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight"><pre><span class="n">molecule</span><span class="o">.</span><span class="n">set_default_graph</span><span class="p">()</span>
+<span class="n">molecule</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">neighbors</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
 </pre></div>
 
 </div>
@@ -2837,83 +2893,12 @@ In&nbsp;[40]:
 
 
 <div class="hbox output_area"><div class="prompt output_prompt">
-    Out[40]:</div>
+    Out[18]:</div>
 <div class="box-flex1 output_subarea output_pyout">
 
 
 <pre>
-[&apos;P(S=P) Contraction coefficients&apos;,
- &apos;Alpha Orbital Energies&apos;,
- &apos;Mulliken Charges&apos;,
- &apos;Atom Modifiers&apos;,
- &apos;Alpha MO coefficients&apos;,
- &apos;Number of basis functions&apos;,
- &apos;Dipole Moment&apos;,
- &apos;Num ILSW&apos;,
- &apos;Shell to atom map&apos;,
- &apos;ILSW&apos;,
- &apos;Charge&apos;,
- &apos;MM charges&apos;,
- &apos;Atom residue num&apos;,
- &apos;Contraction coefficients&apos;,
- &apos;MicOpt&apos;,
- &apos;Virial Ratio&apos;,
- &apos;Int Atom Types&apos;,
- &apos;IOpCl&apos;,
- &apos;Nuclear ZEff&apos;,
- &apos;ONIOM Charges&apos;,
- &apos;Int Atom Modified Types&apos;,
- &apos;Atom Layers&apos;,
- &apos;Force Field&apos;,
- &apos;Number of point charges in /Mol/&apos;,
- &apos;Link Atoms&apos;,
- &apos;Current cartesian coordinates&apos;,
- &apos;Pure/Cartesian f shells&apos;,
- &apos;Constraint Structure&apos;,
- &apos;ONIOM Multiplicities&apos;,
- &apos;Number of electrons&apos;,
- &apos;Atom Modified MM Charges&apos;,
- &apos;Nuclear QMom&apos;,
- &apos;Shell types&apos;,
- &apos;Primitive exponents&apos;,
- &apos;RBond&apos;,
- &apos;Number of beta electrons&apos;,
- &apos;Multiplicity&apos;,
- &apos;MxBond&apos;,
- &apos;Total SCF Density&apos;,
- &apos;Number of independent functions&apos;,
- &apos;SCF Energy&apos;,
- &apos;Number of primitive shells&apos;,
- &apos;Num RLSW&apos;,
- &apos;Nuclear charges&apos;,
- &apos;External E-field&apos;,
- &apos;Number of primitives per shell&apos;,
- &apos;Highest angular momentum&apos;,
- &apos;NBond&apos;,
- &apos;Integer atomic weights&apos;,
- &apos;IROHF&apos;,
- &apos;Nuclear spins&apos;,
- &apos;Quadrupole Moment&apos;,
- &apos;Number of atoms&apos;,
- &apos;RLSW&apos;,
- &apos;Cartesian Gradient&apos;,
- &apos;Link Distances&apos;,
- &apos;Atomic numbers&apos;,
- &apos;Coordinates of each shell&apos;,
- &apos;Largest degree of contraction&apos;,
- &apos;IBond&apos;,
- &apos;QEq coupling tensors&apos;,
- &apos;Number of alpha electrons&apos;,
- &apos;Number of contracted shells&apos;,
- &apos;Info1-9&apos;,
- &apos;Atom fragment info&apos;,
- &apos;Nuclear ZNuc&apos;,
- &apos;Pure/Cartesian d shells&apos;,
- &apos;Number of translation vectors&apos;,
- &apos;Real atomic weights&apos;,
- &apos;Nuclear GFac&apos;,
- &apos;Total Energy&apos;,
- &apos;RMS Density&apos;]
+frozenset({0, 2, 26})
 </pre>
 
 </div>
@@ -2923,12 +2908,55 @@ In&nbsp;[40]:
 </div>
 
 </div>
-    </div>
+    </div><div class="fragment">
+    
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Also contains a parsers for some quantum chemical machine readable files including Gaussian's fchk files</p>
+</div>
+    </div><div class="fragment">
+    
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[37]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight"><pre><span class="kn">from</span> <span class="nn">molmod.io</span> <span class="kn">import</span> <span class="n">FCHKFile</span>
+
+<span class="n">fchk_parser</span><span class="o">=</span><span class="n">FCHKFile</span><span class="p">(</span><span class="s">&#39;triang_graphene.fchk&#39;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">fchk_parser</span><span class="o">.</span><span class="n">fields</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+</pre></div>
+
+</div>
+</div>
+
+<div class="vbox output_wrapper">
+<div class="output vbox">
+
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_stream output_stdout">
+<pre>
+[&apos;P(S=P) Contraction coefficients&apos;, &apos;Alpha Orbital Energies&apos;, &apos;Mulliken Charges&apos;, &apos;Atom Modifiers&apos;, &apos;Alpha MO coefficients&apos;, &apos;Number of basis functions&apos;, &apos;Dipole Moment&apos;, &apos;Num ILSW&apos;, &apos;Shell to atom map&apos;, &apos;ILSW&apos;, &apos;Charge&apos;, &apos;MM charges&apos;, &apos;Atom residue num&apos;, &apos;Contraction coefficients&apos;, &apos;MicOpt&apos;, &apos;Virial Ratio&apos;, &apos;Int Atom Types&apos;, &apos;IOpCl&apos;, &apos;Nuclear ZEff&apos;, &apos;ONIOM Charges&apos;, &apos;Int Atom Modified Types&apos;, &apos;Atom Layers&apos;, &apos;Force Field&apos;, &apos;Number of point charges in /Mol/&apos;, &apos;Link Atoms&apos;, &apos;Current cartesian coordinates&apos;, &apos;Pure/Cartesian f shells&apos;, &apos;Constraint Structure&apos;, &apos;ONIOM Multiplicities&apos;, &apos;Number of electrons&apos;, &apos;Atom Modified MM Charges&apos;, &apos;Nuclear QMom&apos;, &apos;Shell types&apos;, &apos;Primitive exponents&apos;, &apos;RBond&apos;, &apos;Number of beta electrons&apos;, &apos;Multiplicity&apos;, &apos;MxBond&apos;, &apos;Total SCF Density&apos;, &apos;Number of independent functions&apos;, &apos;SCF Energy&apos;, &apos;Number of primitive shells&apos;, &apos;Num RLSW&apos;, &apos;Nuclear charges&apos;, &apos;External E-field&apos;, &apos;Number of primitives per shell&apos;, &apos;Highest angular momentum&apos;, &apos;NBond&apos;, &apos;Integer atomic weights&apos;, &apos;IROHF&apos;, &apos;Nuclear spins&apos;, &apos;Quadrupole Moment&apos;, &apos;Number of atoms&apos;, &apos;RLSW&apos;, &apos;Cartesian Gradient&apos;, &apos;Link Distances&apos;, &apos;Atomic numbers&apos;, &apos;Coordinates of each shell&apos;, &apos;Largest degree of contraction&apos;, &apos;IBond&apos;, &apos;QEq coupling tensors&apos;, &apos;Number of alpha electrons&apos;, &apos;Number of contracted shells&apos;, &apos;Info1-9&apos;, &apos;Atom fragment info&apos;, &apos;Nuclear ZNuc&apos;, &apos;Pure/Cartesian d shells&apos;, &apos;Number of translation vectors&apos;, &apos;Real atomic weights&apos;, &apos;Nuclear GFac&apos;, &apos;Total Energy&apos;, &apos;RMS Density&apos;]
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    </div></section><section>
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>IPython Notebook</strong></p>
 <p>Python + HTML + Javascript</p>
+</div><div class="fragment">
+    
+<div class="text_cell_render border-box-sizing rendered_html">
 <img src='ipy-notebook-notebook.png'></img>
-</div></section><section>
+</div>
+    </div></section><section>
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Glue code:</p>
 </div><div class="fragment">
@@ -3038,11 +3066,88 @@ var Info = {
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Notebooks-in-action.">Notebooks in action.<a class="anchor-link" href="#Notebooks-in-action.">&#182;</a></h3>
 </div>
-</section><section>
+<div style=display:none>
+    
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">
-In&nbsp;[2]:
+In&nbsp;[22]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight"><pre><span class="kn">import</span> <span class="nn">pandas</span><span class="o">,</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">webbrowser</span> <span class="kn">import</span> <span class="nb">open</span> <span class="k">as</span> <span class="n">open_log</span>
+<span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">pi</span>
+<span class="kn">from</span> <span class="nn">IPython.core.display</span> <span class="kn">import</span> <span class="n">HTML</span><span class="p">,</span> <span class="n">Image</span>
+<span class="kn">from</span> <span class="nn">ase.io</span> <span class="kn">import</span> <span class="n">read</span><span class="p">,</span> <span class="n">write</span>
+<span class="c">#from ase.calculators.gaussian import Gaussian</span>
+<span class="kn">from</span> <span class="nn">gausspy</span> <span class="kn">import</span> <span class="n">Gaussian</span>
+<span class="kn">from</span> <span class="nn">glob</span> <span class="kn">import</span> <span class="n">glob</span>
+<span class="kn">from</span> <span class="nn">ASE_utils</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">import</span> <span class="nn">cc_notebook_utils</span>
+<span class="kn">from</span> <span class="nn">cc_notebook_utils</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="c">#from adsy import display as ad_disp</span>
+<span class="n">pandas</span><span class="o">.</span><span class="n">set_printoptions</span><span class="p">(</span><span class="n">max_rows</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">max_columns</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="c">#ad_disp.extended_styles()</span>
+</pre></div>
+
+</div>
+</div>
+
+<div class="vbox output_wrapper">
+<div class="output vbox">
+
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_stream output_stderr">
+<pre>
+/home/clyde/anaconda/lib/python2.7/site-packages/pandas/core/format.py:1653: FutureWarning: set_printoptions is deprecated, use set_option instead
+  FutureWarning)
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    </div><div style=display:none>
+    
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[19]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight"><pre><span class="n">cd</span> <span class="o">~/</span><span class="n">Project</span><span class="o">/</span><span class="n">Notebooks</span><span class="o">/</span><span class="n">triang_graph</span><span class="o">/</span>
+</pre></div>
+
+</div>
+</div>
+
+<div class="vbox output_wrapper">
+<div class="output vbox">
+
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_stream output_stdout">
+<pre>
+/home/clyde/Dropbox/Project Stuff/Notebooks/triang_graph
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    </div></section><section>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[20]:
 </div>
 <div class="input_area box-flex1">
 <div class="highlight"><pre><span class="kn">from</span> <span class="nn">cc_notebook_utils</span> <span class="kn">import</span> <span class="o">*</span>
@@ -3051,702 +3156,29 @@ In&nbsp;[2]:
 </div>
 </div>
 
-</div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
-<div class="prompt input_prompt">
-In&nbsp;[5]:
-</div>
-<div class="input_area box-flex1">
-<div class="highlight"><pre><span class="n">tri_graph_init</span><span class="p">,</span> <span class="n">tri_graph_small_init</span> <span class="o">=</span> <span class="s">&#39;triang_graphene.xyz&#39;</span><span class="p">,</span> <span class="s">&#39;triang_graphene_small.xyz&#39;</span>
-<span class="n">view_ipython_jmol</span><span class="p">([</span><span class="n">tri_graph_small_init</span><span class="p">,</span><span class="n">tri_graph_init</span><span class="p">],</span> <span class="n">width</span><span class="o">=</span><span class="mi">550</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">550</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-
-</div>
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>The small graphene unit has 13 carbons hence an odd number of p electrons so we will focus on the larger fragment (which was the one causing us problems in the first place). As we expect this to fail we will also try using the scf='xqc' keyword:</p>
-</div></section><section>
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Try the normal a single point calculation at the geometry given by avogadro's forcefield optimisation:</p>
-</div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
-<div class="prompt input_prompt">
-In&nbsp;[6]:
-</div>
-<div class="input_area box-flex1">
-<div class="highlight"><pre><span class="n">b3lyp_tri</span> <span class="o">=</span> <span class="n">read</span><span class="p">(</span><span class="n">tri_graph_init</span><span class="p">)</span>
-<span class="n">b3lyp_tri</span><span class="o">.</span><span class="n">set_calculator</span><span class="p">(</span><span class="n">Gaussian</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s">&#39;triang_graphene&#39;</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s">&#39;B3LYP&#39;</span><span class="p">,</span> <span class="n">basis</span><span class="o">=</span><span class="s">&#39;6-31G(d)&#39;</span><span class="p">))</span>
-<span class="n">b3lyp_tri</span><span class="o">.</span><span class="n">calc</span><span class="o">.</span><span class="n">set_job</span><span class="p">(</span><span class="n">nodes</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">memory</span><span class="o">=</span><span class="mi">16</span><span class="o">*</span><span class="mi">2000</span><span class="p">,</span> <span class="n">time</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">queue</span><span class="o">=</span><span class="s">&#39;pqmb&#39;</span><span class="p">)</span>
-<span class="c">#b3lyp_tri.calc.start()</span>
-</pre></div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
-<div class="prompt input_prompt">
-In&nbsp;[7]:
-</div>
-<div class="input_area box-flex1">
-<div class="highlight"><pre><span class="n">b3lyp_tri_xqc</span> <span class="o">=</span> <span class="n">read</span><span class="p">(</span><span class="n">tri_graph_init</span><span class="p">)</span>
-<span class="n">b3lyp_tri_xqc</span><span class="o">.</span><span class="n">set_calculator</span><span class="p">(</span><span class="n">Gaussian</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s">&#39;triang_graphene_xqc&#39;</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s">&#39;B3LYP&#39;</span><span class="p">,</span> <span class="n">basis</span><span class="o">=</span><span class="s">&#39;6-31G(d)&#39;</span><span class="p">,</span> <span class="n">scf</span><span class="o">=</span><span class="s">&#39;xqc&#39;</span><span class="p">))</span>
-<span class="n">b3lyp_tri_xqc</span><span class="o">.</span><span class="n">calc</span><span class="o">.</span><span class="n">set_job</span><span class="p">(</span><span class="n">nodes</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">memory</span><span class="o">=</span><span class="mi">16</span><span class="o">*</span><span class="mi">2000</span><span class="p">,</span> <span class="n">time</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">queue</span><span class="o">=</span><span class="s">&#39;pqmb&#39;</span><span class="p">)</span>
-<span class="n">b3lyp_tri_xqc</span><span class="o">.</span><span class="n">calc</span><span class="o">.</span><span class="n">description</span> <span class="o">=</span> <span class="s">&#39;RB3LYP&#39;</span>
-<span class="c">#b3lyp_tri_xqc.calc.start()</span>
-</pre></div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
-<div class="prompt input_prompt">
-In&nbsp;[8]:
-</div>
-<div class="input_area box-flex1">
-<div class="highlight"><pre><span class="n">check_calcs</span><span class="p">([</span><span class="n">b3lyp_tri</span><span class="p">,</span> <span class="n">b3lyp_tri_xqc</span><span class="p">])</span>
-<span class="n">mols_to_html</span><span class="p">([</span><span class="n">b3lyp_tri</span><span class="p">,</span> <span class="n">b3lyp_tri_xqc</span><span class="p">])</span>
-</pre></div>
-
-</div>
-</div>
-
-<div class="vbox output_wrapper">
-<div class="output vbox">
-
-
-<div class="hbox output_area"><div class="prompt output_prompt">
-    Out[8]:</div>
-<div class="box-flex1 output_subarea output_pyout">
-
-<div class="output_html rendered_html">
-
-           <script type="text/javascript">
-           function view_function (event, file_n) {
-               if (event.ctrlKey && event.shiftKey){
-                   IPython.notebook.kernel.execute("cc_notebook_utils.pygview('" + file_n + ".log')");
-               }
-               else if (event.ctrlKey){
-                   IPython.notebook.kernel.execute("cc_notebook_utils.pygausssum('" + file_n + ".log')");
-               }
-               else if (event.shiftKey){
-                   IPython.notebook.kernel.execute("cc_notebook_utils.pyvogadro('" + file_n + ".log')");
-               }
-               else {
-                   IPython.notebook.kernel.execute("cc_notebook_utils.pyvim('" + file_n + ".log')");
-                   IPython.notebook.kernel.execute("print(file_n)");
-               }
-           }
-           </script>
-    <style>
-    table
-    {
-        border-collapse:collapse;
-    }
-    td
-    {
-        padding:15px;
-    }
-    </style>
-    <body>
-    <table bgcolor="white">
-    <col/><tr><td>triang_graphene</td><td><a href = "files/triang_graph/triang_graphene.com" target = "_blank">com</a></td><td><input type="button" value="Smart Log" id="triang_graphene" onclick="view_function(event, this.id)" /></td><td>Error: Convergence failure -- run terminated.</td></tr><tr><td>triang_graphene_xqc</td><td><a href = "files/triang_graph/triang_graphene_xqc.com" target = "_blank">com</a></td><td><input type="button" value="Smart Log" id="triang_graphene_xqc" onclick="view_function(event, this.id)" /></td><td>Success</td></tr>
-    </table>
-    </body>
-</div>
-
-</div>
-</div>
-
-</div>
-</div>
-
-</div></section><section>
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>As before the xqc option allows the scf to converge whereas it fails without it. But is it stable?</p>
-</div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
-<div class="prompt input_prompt">
-In&nbsp;[9]:
-</div>
-<div class="input_area box-flex1">
-<div class="highlight"><pre><span class="n">b3lyp_tri_stable</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">b3lyp_tri_xqc</span><span class="p">)</span>
-<span class="n">b3lyp_tri_stable</span><span class="o">.</span><span class="n">calc</span><span class="o">.</span><span class="n">restart</span><span class="p">(</span><span class="n">add_label</span><span class="o">=</span><span class="s">&#39;stable&#39;</span><span class="p">,</span> <span class="n">stable</span><span class="o">=</span><span class="s">&#39;opt&#39;</span><span class="p">)</span>
-<span class="n">b3lyp_tri_stable</span><span class="o">.</span><span class="n">calc</span><span class="o">.</span><span class="n">description</span> <span class="o">=</span> <span class="s">&#39;RB3LYP, stable=opt&#39;</span>
-<span class="c">#b3lyp_tri_xqc.calc.start()</span>
-</pre></div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
-<div class="prompt input_prompt">
-In&nbsp;[10]:
-</div>
-<div class="input_area box-flex1">
-<div class="highlight"><pre><span class="n">check_calcs</span><span class="p">([</span><span class="n">b3lyp_tri_stable</span><span class="p">])</span>
-<span class="n">mols_to_html</span><span class="p">([</span><span class="n">b3lyp_tri_stable</span><span class="p">])</span>
-</pre></div>
-
-</div>
-</div>
-
-<div class="vbox output_wrapper">
-<div class="output vbox">
-
-
-<div class="hbox output_area"><div class="prompt output_prompt">
-    Out[10]:</div>
-<div class="box-flex1 output_subarea output_pyout">
-
-<div class="output_html rendered_html">
-
-           <script type="text/javascript">
-           function view_function (event, file_n) {
-               if (event.ctrlKey && event.shiftKey){
-                   IPython.notebook.kernel.execute("cc_notebook_utils.pygview('" + file_n + ".log')");
-               }
-               else if (event.ctrlKey){
-                   IPython.notebook.kernel.execute("cc_notebook_utils.pygausssum('" + file_n + ".log')");
-               }
-               else if (event.shiftKey){
-                   IPython.notebook.kernel.execute("cc_notebook_utils.pyvogadro('" + file_n + ".log')");
-               }
-               else {
-                   IPython.notebook.kernel.execute("cc_notebook_utils.pyvim('" + file_n + ".log')");
-                   IPython.notebook.kernel.execute("print(file_n)");
-               }
-           }
-           </script>
-    <style>
-    table
-    {
-        border-collapse:collapse;
-    }
-    td
-    {
-        padding:15px;
-    }
-    </style>
-    <body>
-    <table bgcolor="white">
-    <col/><tr><td>triang_graphene_xqc_stable_restart_1</td><td><a href = "files/triang_graph/triang_graphene_xqc_stable_restart_1.com" target = "_blank">com</a></td><td><input type="button" value="Smart Log" id="triang_graphene_xqc_stable_restart_1" onclick="view_function(event, this.id)" /></td><td>Success</td></tr>
-    </table>
-    </body>
-</div>
-
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><font size=3 color=red>RHF -&gt; UHF instability</font></p>
-</div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
-<div class="prompt input_prompt">
-In&nbsp;[11]:
-</div>
-<div class="input_area box-flex1">
-<div class="highlight"><pre><span class="n">b3lyp_tri_stable</span><span class="o">.</span><span class="n">calc</span><span class="o">.</span><span class="n">max_data</span><span class="p">[</span><span class="s">&#39;S2A&#39;</span><span class="p">],</span> <span class="n">b3lyp_tri_stable</span><span class="o">.</span><span class="n">calc</span><span class="o">.</span><span class="n">energy_zero</span> <span class="o">-</span> <span class="n">b3lyp_tri_xqc</span><span class="o">.</span><span class="n">calc</span><span class="o">.</span><span class="n">energy_zero</span>
-</pre></div>
-
-</div>
-</div>
-
-<div class="vbox output_wrapper">
-<div class="output vbox">
-
-
-<div class="hbox output_area"><div class="prompt output_prompt">
-    Out[11]:</div>
-<div class="box-flex1 output_subarea output_pyout">
-
-
-<pre>
-(0.317148, -0.7297606509673642)
-</pre>
-
-</div>
-</div>
-
-</div>
-</div>
-
-</div></section><section>
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>But 22 carbons therefore 22 p electrons = 4n+2 so we would have expected paired electrons? No <a href="http://en.wikipedia.org/wiki/H%C3%BCckel&#39;s_rule">Huckel's rule</a> only applies to single ring systems in fact the symmetric geometry is at a conical intersection see: <a href="http://www.sciencedirect.com/science/article/pii/S1010603007002390">Mike's paper on this system</a></p>
-</div>
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Let's try unrestricted calculations:</p>
-</div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
-<div class="prompt input_prompt">
-In&nbsp;[12]:
-</div>
-<div class="input_area box-flex1">
-<div class="highlight"><pre><span class="n">b3lyp_tri_v2</span> <span class="o">=</span> <span class="n">read</span><span class="p">(</span><span class="n">tri_graph_init</span><span class="p">)</span>
-<span class="n">b3lyp_tri_v2</span><span class="o">.</span><span class="n">set_calculator</span><span class="p">(</span><span class="n">Gaussian</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s">&#39;triang_graphene_v2&#39;</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s">&#39;UB3LYP&#39;</span><span class="p">,</span> <span class="n">basis</span><span class="o">=</span><span class="s">&#39;6-31G(d)&#39;</span><span class="p">))</span>
-<span class="n">b3lyp_tri_v2</span><span class="o">.</span><span class="n">calc</span><span class="o">.</span><span class="n">set_job</span><span class="p">(</span><span class="n">nodes</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">memory</span><span class="o">=</span><span class="mi">16</span><span class="o">*</span><span class="mi">2000</span><span class="p">,</span> <span class="n">time</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
-<span class="n">b3lyp_tri_v2</span><span class="o">.</span><span class="n">calc</span><span class="o">.</span><span class="n">description</span> <span class="o">=</span> <span class="s">&#39;UB3LYP, mult=1&#39;</span>
-<span class="c">#b3lyp_tri_v2.calc.start()</span>
-</pre></div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
-<div class="prompt input_prompt">
-In&nbsp;[13]:
-</div>
-<div class="input_area box-flex1">
-<div class="highlight"><pre><span class="n">b3lyp_tri_xqc_v2</span> <span class="o">=</span> <span class="n">read</span><span class="p">(</span><span class="n">tri_graph_init</span><span class="p">)</span>
-<span class="n">b3lyp_tri_xqc_v2</span><span class="o">.</span><span class="n">set_calculator</span><span class="p">(</span><span class="n">Gaussian</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s">&#39;triang_graphene_xqc_v2&#39;</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s">&#39;UB3LYP&#39;</span><span class="p">,</span> <span class="n">basis</span><span class="o">=</span><span class="s">&#39;6-31G(d)&#39;</span><span class="p">,</span> <span class="n">scf</span><span class="o">=</span><span class="s">&#39;xqc&#39;</span><span class="p">))</span>
-<span class="n">b3lyp_tri_xqc_v2</span><span class="o">.</span><span class="n">calc</span><span class="o">.</span><span class="n">set_job</span><span class="p">(</span><span class="n">nodes</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">memory</span><span class="o">=</span><span class="mi">16</span><span class="o">*</span><span class="mi">2000</span><span class="p">,</span> <span class="n">time</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
-<span class="c">#b3lyp_tri_xqc_v2.calc.start()</span>
-</pre></div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
-<div class="prompt input_prompt">
-In&nbsp;[14]:
-</div>
-<div class="input_area box-flex1">
-<div class="highlight"><pre><span class="n">check_calcs</span><span class="p">([</span><span class="n">b3lyp_tri_v2</span><span class="p">,</span> <span class="n">b3lyp_tri_xqc_v2</span><span class="p">])</span>
-<span class="n">mols_to_html</span><span class="p">([</span><span class="n">b3lyp_tri_v2</span><span class="p">,</span> <span class="n">b3lyp_tri_xqc_v2</span><span class="p">])</span>
-</pre></div>
-
-</div>
-</div>
-
-<div class="vbox output_wrapper">
-<div class="output vbox">
-
-
-<div class="hbox output_area"><div class="prompt output_prompt">
-    Out[14]:</div>
-<div class="box-flex1 output_subarea output_pyout">
-
-<div class="output_html rendered_html">
-
-           <script type="text/javascript">
-           function view_function (event, file_n) {
-               if (event.ctrlKey && event.shiftKey){
-                   IPython.notebook.kernel.execute("cc_notebook_utils.pygview('" + file_n + ".log')");
-               }
-               else if (event.ctrlKey){
-                   IPython.notebook.kernel.execute("cc_notebook_utils.pygausssum('" + file_n + ".log')");
-               }
-               else if (event.shiftKey){
-                   IPython.notebook.kernel.execute("cc_notebook_utils.pyvogadro('" + file_n + ".log')");
-               }
-               else {
-                   IPython.notebook.kernel.execute("cc_notebook_utils.pyvim('" + file_n + ".log')");
-                   IPython.notebook.kernel.execute("print(file_n)");
-               }
-           }
-           </script>
-    <style>
-    table
-    {
-        border-collapse:collapse;
-    }
-    td
-    {
-        padding:15px;
-    }
-    </style>
-    <body>
-    <table bgcolor="white">
-    <col/><tr><td>triang_graphene_v2</td><td><a href = "files/triang_graph/triang_graphene_v2.com" target = "_blank">com</a></td><td><input type="button" value="Smart Log" id="triang_graphene_v2" onclick="view_function(event, this.id)" /></td><td>Success</td></tr><tr><td>triang_graphene_xqc_v2</td><td><a href = "files/triang_graph/triang_graphene_xqc_v2.com" target = "_blank">com</a></td><td><input type="button" value="Smart Log" id="triang_graphene_xqc_v2" onclick="view_function(event, this.id)" /></td><td>Success</td></tr>
-    </table>
-    </body>
-</div>
-
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
-<div class="prompt input_prompt">
-In&nbsp;[15]:
-</div>
-<div class="input_area box-flex1">
-<div class="highlight"><pre><span class="n">b3lyp_tri_v2</span><span class="o">.</span><span class="n">calc</span><span class="o">.</span><span class="n">max_data</span><span class="p">[</span><span class="s">&#39;S2A&#39;</span><span class="p">],</span> <span class="n">b3lyp_tri_v2</span><span class="o">.</span><span class="n">calc</span><span class="o">.</span><span class="n">energy_zero</span> <span class="o">-</span> <span class="n">b3lyp_tri_xqc</span><span class="o">.</span><span class="n">calc</span><span class="o">.</span><span class="n">energy_zero</span>
-</pre></div>
-
-</div>
-</div>
-
-<div class="vbox output_wrapper">
-<div class="output vbox">
-
-
-<div class="hbox output_area"><div class="prompt output_prompt">
-    Out[15]:</div>
-<div class="box-flex1 output_subarea output_pyout">
-
-
-<pre>
-(0.288534, -0.6896456114918692)
-</pre>
-
-</div>
-</div>
-
-</div>
-</div>
-
-</div></section><section>
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Is this stable?</p>
-</div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
-<div class="prompt input_prompt">
-In&nbsp;[16]:
-</div>
-<div class="input_area box-flex1">
-<div class="highlight"><pre><span class="n">b3lyp_tri_v2_stable</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">b3lyp_tri_v2</span><span class="p">)</span>
-<span class="n">b3lyp_tri_v2_stable</span><span class="o">.</span><span class="n">calc</span><span class="o">.</span><span class="n">restart</span><span class="p">(</span><span class="n">stable</span><span class="o">=</span><span class="s">&#39;opt&#39;</span><span class="p">)</span>
-<span class="n">b3lyp_tri_v2_stable</span><span class="o">.</span><span class="n">calc</span><span class="o">.</span><span class="n">set_job</span><span class="p">(</span><span class="n">nodes</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">memory</span><span class="o">=</span><span class="mi">8</span><span class="o">*</span><span class="mi">1600</span><span class="p">,</span> <span class="n">time</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
-<span class="n">b3lyp_tri_v2_stable</span><span class="o">.</span><span class="n">calc</span><span class="o">.</span><span class="n">description</span> <span class="o">=</span> <span class="s">&#39;UB3LYP, mult=1, stable=opt&#39;</span>
-<span class="c">#b3lyp_tri_v2_stable.calc.start()</span>
-<span class="n">check_calcs</span><span class="p">([</span><span class="n">b3lyp_tri_v2_stable</span><span class="p">])</span>
-<span class="n">mols_to_html</span><span class="p">([</span><span class="n">b3lyp_tri_v2_stable</span><span class="p">])</span>
-</pre></div>
-
-</div>
-</div>
-
-<div class="vbox output_wrapper">
-<div class="output vbox">
-
-
-<div class="hbox output_area"><div class="prompt output_prompt">
-    Out[16]:</div>
-<div class="box-flex1 output_subarea output_pyout">
-
-<div class="output_html rendered_html">
-
-           <script type="text/javascript">
-           function view_function (event, file_n) {
-               if (event.ctrlKey && event.shiftKey){
-                   IPython.notebook.kernel.execute("cc_notebook_utils.pygview('" + file_n + ".log')");
-               }
-               else if (event.ctrlKey){
-                   IPython.notebook.kernel.execute("cc_notebook_utils.pygausssum('" + file_n + ".log')");
-               }
-               else if (event.shiftKey){
-                   IPython.notebook.kernel.execute("cc_notebook_utils.pyvogadro('" + file_n + ".log')");
-               }
-               else {
-                   IPython.notebook.kernel.execute("cc_notebook_utils.pyvim('" + file_n + ".log')");
-                   IPython.notebook.kernel.execute("print(file_n)");
-               }
-           }
-           </script>
-    <style>
-    table
-    {
-        border-collapse:collapse;
-    }
-    td
-    {
-        padding:15px;
-    }
-    </style>
-    <body>
-    <table bgcolor="white">
-    <col/><tr><td>triang_graphene_v2_restart_1</td><td><a href = "files/triang_graph/triang_graphene_v2_restart_1.com" target = "_blank">com</a></td><td><input type="button" value="Smart Log" id="triang_graphene_v2_restart_1" onclick="view_function(event, this.id)" /></td><td>Success</td></tr>
-    </table>
-    </body>
-</div>
-
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>No there was an 'internal instability'</p>
-</div></section><section>
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>We've been setting multiplicity to 1 but in this case the stability calculations reveal some net spin. Let's try running the calculation with mult=3:</p>
-</div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
-<div class="prompt input_prompt">
-In&nbsp;[17]:
-</div>
-<div class="input_area box-flex1">
-<div class="highlight"><pre><span class="n">b3lyp_tri_v3</span> <span class="o">=</span> <span class="n">read</span><span class="p">(</span><span class="n">tri_graph_init</span><span class="p">)</span>
-<span class="n">b3lyp_tri_v3</span><span class="o">.</span><span class="n">set_calculator</span><span class="p">(</span><span class="n">Gaussian</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s">&#39;triang_graphene_v3&#39;</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s">&#39;UB3LYP&#39;</span><span class="p">,</span> <span class="n">basis</span><span class="o">=</span><span class="s">&#39;6-31G(d)&#39;</span><span class="p">,</span> <span class="n">multiplicity</span><span class="o">=</span><span class="mi">3</span><span class="p">))</span>
-<span class="n">b3lyp_tri_v3</span><span class="o">.</span><span class="n">calc</span><span class="o">.</span><span class="n">set_job</span><span class="p">(</span><span class="n">nodes</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">memory</span><span class="o">=</span><span class="mi">12</span><span class="o">*</span><span class="mi">1600</span><span class="p">,</span> <span class="n">time</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
-<span class="n">b3lyp_tri_v3</span><span class="o">.</span><span class="n">calc</span><span class="o">.</span><span class="n">description</span> <span class="o">=</span> <span class="s">&#39;UB3LYP, mult=3&#39;</span>
-<span class="c">#b3lyp_tri_v3.calc.start()</span>
-</pre></div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
-<div class="prompt input_prompt">
-In&nbsp;[18]:
-</div>
-<div class="input_area box-flex1">
-<div class="highlight"><pre><span class="n">check_calcs</span><span class="p">([</span><span class="n">b3lyp_tri_v3</span><span class="p">])</span>
-<span class="n">mols_to_html</span><span class="p">([</span><span class="n">b3lyp_tri_v3</span><span class="p">])</span>
-</pre></div>
-
-</div>
-</div>
-
-<div class="vbox output_wrapper">
-<div class="output vbox">
-
-
-<div class="hbox output_area"><div class="prompt output_prompt">
-    Out[18]:</div>
-<div class="box-flex1 output_subarea output_pyout">
-
-<div class="output_html rendered_html">
-
-           <script type="text/javascript">
-           function view_function (event, file_n) {
-               if (event.ctrlKey && event.shiftKey){
-                   IPython.notebook.kernel.execute("cc_notebook_utils.pygview('" + file_n + ".log')");
-               }
-               else if (event.ctrlKey){
-                   IPython.notebook.kernel.execute("cc_notebook_utils.pygausssum('" + file_n + ".log')");
-               }
-               else if (event.shiftKey){
-                   IPython.notebook.kernel.execute("cc_notebook_utils.pyvogadro('" + file_n + ".log')");
-               }
-               else {
-                   IPython.notebook.kernel.execute("cc_notebook_utils.pyvim('" + file_n + ".log')");
-                   IPython.notebook.kernel.execute("print(file_n)");
-               }
-           }
-           </script>
-    <style>
-    table
-    {
-        border-collapse:collapse;
-    }
-    td
-    {
-        padding:15px;
-    }
-    </style>
-    <body>
-    <table bgcolor="white">
-    <col/><tr><td>triang_graphene_v3</td><td><a href = "files/triang_graph/triang_graphene_v3.com" target = "_blank">com</a></td><td><input type="button" value="Smart Log" id="triang_graphene_v3" onclick="view_function(event, this.id)" /></td><td>Success</td></tr>
-    </table>
-    </body>
-</div>
-
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
-<div class="prompt input_prompt">
-In&nbsp;[19]:
-</div>
-<div class="input_area box-flex1">
-<div class="highlight"><pre><span class="n">b3lyp_tri_v3</span><span class="o">.</span><span class="n">calc</span><span class="o">.</span><span class="n">max_data</span><span class="p">[</span><span class="s">&#39;S2A&#39;</span><span class="p">],</span> <span class="n">b3lyp_tri_v3</span><span class="o">.</span><span class="n">calc</span><span class="o">.</span><span class="n">energy_zero</span> <span class="o">-</span> <span class="n">b3lyp_tri_xqc</span><span class="o">.</span><span class="n">calc</span><span class="o">.</span><span class="n">energy_zero</span>
-</pre></div>
-
-</div>
-</div>
-
-<div class="vbox output_wrapper">
-<div class="output vbox">
-
-
-<div class="hbox output_area"><div class="prompt output_prompt">
-    Out[19]:</div>
-<div class="box-flex1 output_subarea output_pyout">
-
-
-<pre>
-(2.00843, -1.032277899888868)
-</pre>
-
-</div>
-</div>
-
-</div>
-</div>
-
-</div></section><section>
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Is this stable?</p>
-</div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
-<div class="prompt input_prompt">
-In&nbsp;[20]:
-</div>
-<div class="input_area box-flex1">
-<div class="highlight"><pre><span class="n">b3lyp_tri_v3_stable</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">b3lyp_tri_v3</span><span class="p">)</span>
-<span class="n">b3lyp_tri_v3_stable</span><span class="o">.</span><span class="n">calc</span><span class="o">.</span><span class="n">restart</span><span class="p">(</span><span class="n">stable</span><span class="o">=</span><span class="s">&#39;opt&#39;</span><span class="p">)</span>
-<span class="n">b3lyp_tri_v3_stable</span><span class="o">.</span><span class="n">calc</span><span class="o">.</span><span class="n">description</span> <span class="o">=</span> <span class="s">&#39;UB3LYP, mult=3, stable=opt&#39;</span>
-<span class="c">#b3lyp_tri_v3.calc.start()</span>
-<span class="n">check_calcs</span><span class="p">([</span><span class="n">b3lyp_tri_v3_stable</span><span class="p">])</span>
-<span class="n">mols_to_html</span><span class="p">([</span><span class="n">b3lyp_tri_v3_stable</span><span class="p">])</span>
-</pre></div>
-
-</div>
-</div>
-
-<div class="vbox output_wrapper">
-<div class="output vbox">
-
-
-<div class="hbox output_area"><div class="prompt output_prompt">
-    Out[20]:</div>
-<div class="box-flex1 output_subarea output_pyout">
-
-<div class="output_html rendered_html">
-
-           <script type="text/javascript">
-           function view_function (event, file_n) {
-               if (event.ctrlKey && event.shiftKey){
-                   IPython.notebook.kernel.execute("cc_notebook_utils.pygview('" + file_n + ".log')");
-               }
-               else if (event.ctrlKey){
-                   IPython.notebook.kernel.execute("cc_notebook_utils.pygausssum('" + file_n + ".log')");
-               }
-               else if (event.shiftKey){
-                   IPython.notebook.kernel.execute("cc_notebook_utils.pyvogadro('" + file_n + ".log')");
-               }
-               else {
-                   IPython.notebook.kernel.execute("cc_notebook_utils.pyvim('" + file_n + ".log')");
-                   IPython.notebook.kernel.execute("print(file_n)");
-               }
-           }
-           </script>
-    <style>
-    table
-    {
-        border-collapse:collapse;
-    }
-    td
-    {
-        padding:15px;
-    }
-    </style>
-    <body>
-    <table bgcolor="white">
-    <col/><tr><td>triang_graphene_v3_restart_1</td><td><a href = "files/triang_graph/triang_graphene_v3_restart_1.com" target = "_blank">com</a></td><td><input type="button" value="Smart Log" id="triang_graphene_v3_restart_1" onclick="view_function(event, this.id)" /></td><td>Success</td></tr>
-    </table>
-    </body>
-</div>
-
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Yes wavefunction is stable.</p>
-</div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
-<div class="prompt input_prompt">
-In&nbsp;[21]:
-</div>
-<div class="input_area box-flex1">
-<div class="highlight"><pre><span class="n">b3lyp_tri_v3</span><span class="o">.</span><span class="n">calc</span><span class="o">.</span><span class="n">max_data</span><span class="p">[</span><span class="s">&#39;S2A&#39;</span><span class="p">],</span> <span class="n">b3lyp_tri_v3</span><span class="o">.</span><span class="n">calc</span><span class="o">.</span><span class="n">energy_zero</span> <span class="o">-</span> <span class="n">b3lyp_tri_xqc</span><span class="o">.</span><span class="n">calc</span><span class="o">.</span><span class="n">energy_zero</span>
-</pre></div>
-
-</div>
-</div>
-
-<div class="vbox output_wrapper">
-<div class="output vbox">
-
-
-<div class="hbox output_area"><div class="prompt output_prompt">
-    Out[21]:</div>
-<div class="box-flex1 output_subarea output_pyout">
-
-
-<pre>
-(2.00843, -1.032277899888868)
-</pre>
-
-</div>
-</div>
-
-</div>
-</div>
-
-</div></section><section>
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Just to be sure let's completely remove symmetry:</p>
-</div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
-<div class="prompt input_prompt">
-In&nbsp;[22]:
-</div>
-<div class="input_area box-flex1">
-<div class="highlight"><pre><span class="n">b3lyp_tri_v4</span> <span class="o">=</span> <span class="n">read</span><span class="p">(</span><span class="n">tri_graph_init</span><span class="p">)</span>
-<span class="n">b3lyp_tri_v4</span><span class="o">.</span><span class="n">set_calculator</span><span class="p">(</span><span class="n">Gaussian</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s">&#39;triang_graphene_v4&#39;</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s">&#39;UB3LYP&#39;</span><span class="p">,</span> <span class="n">basis</span><span class="o">=</span><span class="s">&#39;6-31G(d)&#39;</span><span class="p">,</span> <span class="n">multiplicity</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">nosymmetry</span><span class="o">=</span><span class="s">&#39;nosymmetry&#39;</span><span class="p">))</span>
-<span class="n">b3lyp_tri_v4</span><span class="o">.</span><span class="n">calc</span><span class="o">.</span><span class="n">set_job</span><span class="p">(</span><span class="n">nodes</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">memory</span><span class="o">=</span><span class="mi">12</span><span class="o">*</span><span class="mi">1600</span><span class="p">,</span> <span class="n">time</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
-<span class="n">b3lyp_tri_v4</span><span class="o">.</span><span class="n">calc</span><span class="o">.</span><span class="n">description</span> <span class="o">=</span> <span class="s">&#39;UB3LYP, mult=3, nosymm&#39;</span>
-<span class="c">#b3lyp_tri_v4.calc.start()</span>
-</pre></div>
-
-</div>
-</div>
-
-</div>
+</div><div class="fragment">
+    
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">
 In&nbsp;[23]:
 </div>
 <div class="input_area box-flex1">
-<div class="highlight"><pre><span class="n">check_calcs</span><span class="p">([</span><span class="n">b3lyp_tri_v4</span><span class="p">])</span>
-<span class="n">mols_to_html</span><span class="p">([</span><span class="n">b3lyp_tri_v4</span><span class="p">])</span>
+<div class="highlight"><pre><span class="n">tri_graph_init</span>  <span class="o">=</span> <span class="s">&#39;triang_graphene.xyz&#39;</span>
+
+<span class="n">tri</span> <span class="o">=</span> <span class="n">read</span><span class="p">(</span><span class="n">tri_graph_init</span><span class="p">)</span>
+<span class="n">tri</span><span class="o">.</span><span class="n">set_calculator</span><span class="p">(</span><span class="n">Gaussian</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s">&#39;triang_graphene&#39;</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s">&#39;B3LYP&#39;</span><span class="p">,</span> <span class="n">basis</span><span class="o">=</span><span class="s">&#39;6-31G(d)&#39;</span><span class="p">))</span>
+<span class="n">tri</span><span class="o">.</span><span class="n">calc</span><span class="o">.</span><span class="n">set_job</span><span class="p">(</span><span class="n">nodes</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">memory</span><span class="o">=</span><span class="mi">16</span><span class="o">*</span><span class="mi">2000</span><span class="p">,</span> <span class="n">time</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">queue</span><span class="o">=</span><span class="s">&#39;pqmb&#39;</span><span class="p">)</span>
+
+<span class="n">tri_xqc</span> <span class="o">=</span> <span class="n">read</span><span class="p">(</span><span class="n">tri_graph_init</span><span class="p">)</span>
+<span class="n">tri_xqc</span><span class="o">.</span><span class="n">set_calculator</span><span class="p">(</span><span class="n">Gaussian</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s">&#39;triang_graphene_xqc&#39;</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s">&#39;B3LYP&#39;</span><span class="p">,</span> <span class="n">basis</span><span class="o">=</span><span class="s">&#39;6-31G(d)&#39;</span><span class="p">,</span> <span class="n">scf</span><span class="o">=</span><span class="s">&#39;xqc&#39;</span><span class="p">))</span>
+<span class="n">tri_xqc</span><span class="o">.</span><span class="n">calc</span><span class="o">.</span><span class="n">set_job</span><span class="p">(</span><span class="n">nodes</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">memory</span><span class="o">=</span><span class="mi">16</span><span class="o">*</span><span class="mi">2000</span><span class="p">,</span> <span class="n">time</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">queue</span><span class="o">=</span><span class="s">&#39;pqmb&#39;</span><span class="p">)</span>
+
+<span class="c">#tri.calc.start()</span>
+<span class="c">#tri_xqc.calc.start()</span>
+
+<span class="n">check_calcs</span><span class="p">([</span><span class="n">tri</span><span class="p">,</span> <span class="n">tri_xqc</span><span class="p">])</span>
+<span class="n">mols_to_html</span><span class="p">([</span><span class="n">tri</span><span class="p">,</span> <span class="n">tri_xqc</span><span class="p">])</span>
 </pre></div>
 
 </div>
@@ -3791,7 +3223,7 @@ In&nbsp;[23]:
     </style>
     <body>
     <table bgcolor="white">
-    <col/><tr><td>triang_graphene_v4</td><td><a href = "files/triang_graph/triang_graphene_v4.com" target = "_blank">com</a></td><td><input type="button" value="Smart Log" id="triang_graphene_v4" onclick="view_function(event, this.id)" /></td><td>Success</td></tr>
+    <col/><tr><td>triang_graphene</td><td><a href = "files/triang_graph/triang_graphene.com" target = "_blank">com</a></td><td><input type="button" value="Smart Log" id="triang_graphene" onclick="view_function(event, this.id)" /></td><td>Error: Convergence failure -- run terminated.</td></tr><tr><td>triang_graphene_xqc</td><td><a href = "files/triang_graph/triang_graphene_xqc.com" target = "_blank">com</a></td><td><input type="button" value="Smart Log" id="triang_graphene_xqc" onclick="view_function(event, this.id)" /></td><td>Success</td></tr>
     </table>
     </body>
 </div>
@@ -3802,460 +3234,45 @@ In&nbsp;[23]:
 </div>
 </div>
 
-</div></section><section>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
-<div class="prompt input_prompt">
-In&nbsp;[24]:
 </div>
-<div class="input_area box-flex1">
-<div class="highlight"><pre><span class="n">b3lyp_tri_v4_stable</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">b3lyp_tri_v4</span><span class="p">)</span>
-<span class="n">b3lyp_tri_v4_stable</span><span class="o">.</span><span class="n">calc</span><span class="o">.</span><span class="n">restart</span><span class="p">(</span><span class="n">stable</span><span class="o">=</span><span class="s">&#39;opt&#39;</span><span class="p">)</span>
-<span class="n">b3lyp_tri_v4_stable</span><span class="o">.</span><span class="n">calc</span><span class="o">.</span><span class="n">description</span> <span class="o">=</span> <span class="s">&#39;UB3LYP, mult=3, nosymm, stable=opt&#39;</span>
-<span class="c">#b3lyp_tri_v4_stable.calc.start()</span>
-</pre></div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
-<div class="prompt input_prompt">
-In&nbsp;[25]:
-</div>
-<div class="input_area box-flex1">
-<div class="highlight"><pre><span class="n">check_calcs</span><span class="p">([</span><span class="n">b3lyp_tri_v4_stable</span><span class="p">])</span>
-<span class="n">mols_to_html</span><span class="p">([</span><span class="n">b3lyp_tri_v4_stable</span><span class="p">])</span>
-</pre></div>
-
-</div>
-</div>
-
-<div class="vbox output_wrapper">
-<div class="output vbox">
-
-
-<div class="hbox output_area"><div class="prompt output_prompt">
-    Out[25]:</div>
-<div class="box-flex1 output_subarea output_pyout">
-
-<div class="output_html rendered_html">
-
-           <script type="text/javascript">
-           function view_function (event, file_n) {
-               if (event.ctrlKey && event.shiftKey){
-                   IPython.notebook.kernel.execute("cc_notebook_utils.pygview('" + file_n + ".log')");
-               }
-               else if (event.ctrlKey){
-                   IPython.notebook.kernel.execute("cc_notebook_utils.pygausssum('" + file_n + ".log')");
-               }
-               else if (event.shiftKey){
-                   IPython.notebook.kernel.execute("cc_notebook_utils.pyvogadro('" + file_n + ".log')");
-               }
-               else {
-                   IPython.notebook.kernel.execute("cc_notebook_utils.pyvim('" + file_n + ".log')");
-                   IPython.notebook.kernel.execute("print(file_n)");
-               }
-           }
-           </script>
-    <style>
-    table
-    {
-        border-collapse:collapse;
-    }
-    td
-    {
-        padding:15px;
-    }
-    </style>
-    <body>
-    <table bgcolor="white">
-    <col/><tr><td>triang_graphene_v4_restart_1</td><td><a href = "files/triang_graph/triang_graphene_v4_restart_1.com" target = "_blank">com</a></td><td><input type="button" value="Smart Log" id="triang_graphene_v4_restart_1" onclick="view_function(event, this.id)" /></td><td>Success</td></tr>
-    </table>
-    </body>
-</div>
-
-</div>
-</div>
-
-</div>
-</div>
-
-</div></section><section>
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>And for completeness let's try an unreasonabl high multiplicity:</p>
-</div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
-<div class="prompt input_prompt">
-In&nbsp;[26]:
-</div>
-<div class="input_area box-flex1">
-<div class="highlight"><pre><span class="n">b3lyp_tri_v5</span> <span class="o">=</span> <span class="n">read</span><span class="p">(</span><span class="n">tri_graph_init</span><span class="p">)</span>
-<span class="n">b3lyp_tri_v5</span><span class="o">.</span><span class="n">set_calculator</span><span class="p">(</span><span class="n">Gaussian</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s">&#39;triang_graphene_v5&#39;</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s">&#39;UB3LYP&#39;</span><span class="p">,</span> <span class="n">basis</span><span class="o">=</span><span class="s">&#39;6-31G(d)&#39;</span><span class="p">,</span> <span class="n">multiplicity</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">nosymmetry</span><span class="o">=</span><span class="s">&#39;nosymmetry&#39;</span><span class="p">))</span>
-<span class="n">b3lyp_tri_v5</span><span class="o">.</span><span class="n">calc</span><span class="o">.</span><span class="n">set_job</span><span class="p">(</span><span class="n">nodes</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">memory</span><span class="o">=</span><span class="mi">12</span><span class="o">*</span><span class="mi">1600</span><span class="p">,</span> <span class="n">time</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
-<span class="n">b3lyp_tri_v5</span><span class="o">.</span><span class="n">calc</span><span class="o">.</span><span class="n">description</span> <span class="o">=</span> <span class="s">&#39;UB3LYP, mult=5, nosymm&#39;</span>
-<span class="c">#b3lyp_tri_v5.calc.start()</span>
-</pre></div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
-<div class="prompt input_prompt">
-In&nbsp;[27]:
-</div>
-<div class="input_area box-flex1">
-<div class="highlight"><pre><span class="n">check_calcs</span><span class="p">([</span><span class="n">b3lyp_tri_v5</span><span class="p">])</span>
-<span class="n">mols_to_html</span><span class="p">([</span><span class="n">b3lyp_tri_v5</span><span class="p">])</span>
-</pre></div>
-
-</div>
-</div>
-
-<div class="vbox output_wrapper">
-<div class="output vbox">
-
-
-<div class="hbox output_area"><div class="prompt output_prompt">
-    Out[27]:</div>
-<div class="box-flex1 output_subarea output_pyout">
-
-<div class="output_html rendered_html">
-
-           <script type="text/javascript">
-           function view_function (event, file_n) {
-               if (event.ctrlKey && event.shiftKey){
-                   IPython.notebook.kernel.execute("cc_notebook_utils.pygview('" + file_n + ".log')");
-               }
-               else if (event.ctrlKey){
-                   IPython.notebook.kernel.execute("cc_notebook_utils.pygausssum('" + file_n + ".log')");
-               }
-               else if (event.shiftKey){
-                   IPython.notebook.kernel.execute("cc_notebook_utils.pyvogadro('" + file_n + ".log')");
-               }
-               else {
-                   IPython.notebook.kernel.execute("cc_notebook_utils.pyvim('" + file_n + ".log')");
-                   IPython.notebook.kernel.execute("print(file_n)");
-               }
-           }
-           </script>
-    <style>
-    table
-    {
-        border-collapse:collapse;
-    }
-    td
-    {
-        padding:15px;
-    }
-    </style>
-    <body>
-    <table bgcolor="white">
-    <col/><tr><td>triang_graphene_v5</td><td><a href = "files/triang_graph/triang_graphene_v5.com" target = "_blank">com</a></td><td><input type="button" value="Smart Log" id="triang_graphene_v5" onclick="view_function(event, this.id)" /></td><td>Success</td></tr>
-    </table>
-    </body>
-</div>
-
-</div>
-</div>
-
-</div>
-</div>
-
-</div></section><section>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
-<div class="prompt input_prompt">
-In&nbsp;[28]:
-</div>
-<div class="input_area box-flex1">
-<div class="highlight"><pre><span class="n">b3lyp_tri_v5_stable</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">b3lyp_tri_v5</span><span class="p">)</span>
-<span class="n">b3lyp_tri_v5_stable</span><span class="o">.</span><span class="n">calc</span><span class="o">.</span><span class="n">restart</span><span class="p">(</span><span class="n">stable</span><span class="o">=</span><span class="s">&#39;opt&#39;</span><span class="p">)</span>
-<span class="n">b3lyp_tri_v5_stable</span><span class="o">.</span><span class="n">calc</span><span class="o">.</span><span class="n">description</span> <span class="o">=</span> <span class="s">&#39;UB3LYP, mult=5, nosymm, stable=opt&#39;</span>
-<span class="c">#b3lyp_tri_v5_stable.calc.start()</span>
-</pre></div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
-<div class="prompt input_prompt">
-In&nbsp;[29]:
-</div>
-<div class="input_area box-flex1">
-<div class="highlight"><pre><span class="n">check_calcs</span><span class="p">([</span><span class="n">b3lyp_tri_v5_stable</span><span class="p">])</span>
-<span class="n">mols_to_html</span><span class="p">([</span><span class="n">b3lyp_tri_v5_stable</span><span class="p">])</span>
-</pre></div>
-
-</div>
-</div>
-
-<div class="vbox output_wrapper">
-<div class="output vbox">
-
-
-<div class="hbox output_area"><div class="prompt output_prompt">
-    Out[29]:</div>
-<div class="box-flex1 output_subarea output_pyout">
-
-<div class="output_html rendered_html">
-
-           <script type="text/javascript">
-           function view_function (event, file_n) {
-               if (event.ctrlKey && event.shiftKey){
-                   IPython.notebook.kernel.execute("cc_notebook_utils.pygview('" + file_n + ".log')");
-               }
-               else if (event.ctrlKey){
-                   IPython.notebook.kernel.execute("cc_notebook_utils.pygausssum('" + file_n + ".log')");
-               }
-               else if (event.shiftKey){
-                   IPython.notebook.kernel.execute("cc_notebook_utils.pyvogadro('" + file_n + ".log')");
-               }
-               else {
-                   IPython.notebook.kernel.execute("cc_notebook_utils.pyvim('" + file_n + ".log')");
-                   IPython.notebook.kernel.execute("print(file_n)");
-               }
-           }
-           </script>
-    <style>
-    table
-    {
-        border-collapse:collapse;
-    }
-    td
-    {
-        padding:15px;
-    }
-    </style>
-    <body>
-    <table bgcolor="white">
-    <col/><tr><td>triang_graphene_v5_restart_1</td><td><a href = "files/triang_graph/triang_graphene_v5_restart_1.com" target = "_blank">com</a></td><td><input type="button" value="Smart Log" id="triang_graphene_v5_restart_1" onclick="view_function(event, this.id)" /></td><td>Success</td></tr>
-    </table>
-    </body>
-</div>
-
-</div>
-</div>
-
-</div>
-</div>
-
-</div></section><section>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
-<div class="prompt input_prompt">
-In&nbsp;[37]:
-</div>
-<div class="input_area box-flex1">
-<div class="highlight"><pre><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">OrderedDict</span> <span class="k">as</span> <span class="n">OD</span>
-
-<span class="n">datify</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">m</span><span class="p">:</span> <span class="n">OD</span><span class="p">([[</span><span class="s">&#39;Calc&#39;</span><span class="p">,</span> <span class="n">m</span><span class="o">.</span><span class="n">calc</span><span class="o">.</span><span class="n">description</span><span class="p">],</span>
-                       <span class="p">[</span><span class="s">&#39;Energy&#39;</span><span class="p">,</span> <span class="n">m</span><span class="o">.</span><span class="n">calc</span><span class="o">.</span><span class="n">energy_zero</span><span class="p">],</span> 
-                       <span class="p">[</span><span class="s">&#39;Spin&#39;</span><span class="p">,</span> <span class="n">m</span><span class="o">.</span><span class="n">calc</span><span class="o">.</span><span class="n">max_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;S2A&#39;</span><span class="p">)],</span> 
-                       <span class="p">[</span><span class="s">&#39;Energy_delta&#39;</span><span class="p">,</span> <span class="n">m</span><span class="o">.</span><span class="n">calc</span><span class="o">.</span><span class="n">energy_zero</span> <span class="o">-</span> <span class="n">b3lyp_tri_xqc</span><span class="o">.</span><span class="n">calc</span><span class="o">.</span><span class="n">energy_zero</span><span class="p">]])</span>
-
-<span class="n">data</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="n">datify</span><span class="p">,</span> <span class="p">[</span><span class="n">b3lyp_tri_xqc</span><span class="p">,</span> 
-                    <span class="n">b3lyp_tri_stable</span><span class="p">,</span> 
-                    <span class="n">b3lyp_tri_v2</span><span class="p">,</span> 
-                    <span class="n">b3lyp_tri_v2_stable</span><span class="p">,</span> 
-                    <span class="n">b3lyp_tri_v3</span><span class="p">,</span> 
-                    <span class="n">b3lyp_tri_v3_stable</span><span class="p">,</span> 
-                    <span class="n">b3lyp_tri_v4</span><span class="p">,</span> 
-                    <span class="n">b3lyp_tri_v4_stable</span><span class="p">,</span> 
-                    <span class="n">b3lyp_tri_v5</span><span class="p">,</span> 
-                    <span class="n">b3lyp_tri_v5_stable</span><span class="p">])</span>
-
-<span class="n">ad_disp</span><span class="o">.</span><span class="n">html_multi_dict</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-
-<div class="vbox output_wrapper">
-<div class="output vbox">
-
-
-<div class="hbox output_area"><div class="prompt output_prompt">
-    Out[37]:</div>
-<div class="box-flex1 output_subarea output_pyout">
-
-<div class="output_html rendered_html">
-<table class="nowrap"><tr>
-<th>
-Calc
-</th>
-<th>
-Energy
-</th>
-<th>
-Spin
-</th>
-<th>
-Energy_delta
-</th>
-<tr>
-<td><pre>
-'RB3LYP'
-</pre></td>
-<td><pre>
--23008.773526396573
-</pre></td>
-<td><pre>
-None
-</pre></td>
-<td><pre>
-0.0
-</pre></td>
-</tr>
-<tr>
-<td><pre>
-'RB3LYP, stable=opt'
-</pre></td>
-<td><pre>
--23009.50328704754
-</pre></td>
-<td><pre>
-0.317148
-</pre></td>
-<td><pre>
--0.7297606509673642
-</pre></td>
-</tr>
-<tr>
-<td><pre>
-'UB3LYP, mult=1'
-</pre></td>
-<td><pre>
--23009.463172008065
-</pre></td>
-<td><pre>
-0.288534
-</pre></td>
-<td><pre>
--0.6896456114918692
-</pre></td>
-</tr>
-<tr>
-<td><pre>
-'UB3LYP, mult=1, stable=opt'
-</pre></td>
-<td><pre>
--23009.50328704754
-</pre></td>
-<td><pre>
-0.317152
-</pre></td>
-<td><pre>
--0.7297606509673642
-</pre></td>
-</tr>
-<tr>
-<td><pre>
-'UB3LYP, mult=3'
-</pre></td>
-<td><pre>
--23009.805804296462
-</pre></td>
-<td><pre>
-2.00843
-</pre></td>
-<td><pre>
--1.032277899888868
-</pre></td>
-</tr>
-<tr>
-<td><pre>
-'UB3LYP, mult=3, stable=opt'
-</pre></td>
-<td><pre>
--23009.805804296462
-</pre></td>
-<td><pre>
-2.00843
-</pre></td>
-<td><pre>
--1.032277899888868
-</pre></td>
-</tr>
-<tr>
-<td><pre>
-'UB3LYP, mult=3, nosymm'
-</pre></td>
-<td><pre>
--23009.804974348895
-</pre></td>
-<td><pre>
-2.00843
-</pre></td>
-<td><pre>
--1.0314479523221962
-</pre></td>
-</tr>
-<tr>
-<td><pre>
-'UB3LYP, mult=3, nosymm, stable=opt'
-</pre></td>
-<td><pre>
--23009.804974348895
-</pre></td>
-<td><pre>
-2.00843
-</pre></td>
-<td><pre>
--1.0314479523221962
-</pre></td>
-</tr>
-<tr>
-<td><pre>
-'UB3LYP, mult=5, nosymm'
-</pre></td>
-<td><pre>
--23005.64902142866
-</pre></td>
-<td><pre>
-6.001369
-</pre></td>
-<td><pre>
-3.1245049679127987
-</pre></td>
-</tr>
-<tr>
-<td><pre>
-'UB3LYP, mult=5, nosymm, stable=opt'
-</pre></td>
-<td><pre>
--23005.64902142866
-</pre></td>
-<td><pre>
-6.001369
-</pre></td>
-<td><pre>
-3.1245049679127987
-</pre></td>
-</tr>
-</table>
-</div>
-
-</div>
-</div>
-
-</div>
-</div>
-
-</div></section><section>
+    </div></section><section>
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">
 In&nbsp;[34]:
 </div>
 <div class="input_area box-flex1">
-<div class="highlight"><pre><span class="n">mols_to_html</span><span class="p">([</span><span class="n">b3lyp_tri_xqc</span><span class="p">,</span> <span class="n">b3lyp_tri_stable</span><span class="p">,</span> <span class="n">b3lyp_tri_v2</span><span class="p">,</span> <span class="n">b3lyp_tri_v2_stable</span><span class="p">,</span> <span class="n">b3lyp_tri_v3</span><span class="p">,</span> <span class="n">b3lyp_tri_v3_stable</span><span class="p">,</span> <span class="n">b3lyp_tri_v4</span><span class="p">,</span> <span class="n">b3lyp_tri_v4_stable</span><span class="p">,</span> <span class="n">b3lyp_tri_v5</span><span class="p">,</span> <span class="n">b3lyp_tri_v5_stable</span><span class="p">])</span>
+<div class="highlight"><pre><span class="k">print</span><span class="p">(</span><span class="n">tri_xqc</span><span class="o">.</span><span class="n">calc</span><span class="o">.</span><span class="n">max_data</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+</pre></div>
+
+</div>
+</div>
+
+<div class="vbox output_wrapper">
+<div class="output vbox">
+
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_stream output_stdout">
+<pre>
+[&apos;scfenergies&apos;, &apos;Atom_Flags&apos;, &apos;Rmsd&apos;, &apos;Title&apos;, &apos;Positions&apos;, &apos;atomnos&apos;, &apos;atomcoords&apos;, &apos;charge&apos;, &apos;Dipole&apos;, &apos;homos&apos;, &apos;Person&apos;, &apos;Charge&apos;, &apos;Version&apos;, &apos;Pg&apos;, &apos;nmo&apos;, &apos;mosyms&apos;, &apos;Root&apos;, &apos;Method&apos;, &apos;mult&apos;, &apos;Chemical_Formula&apos;, &apos;natom&apos;, &apos;moenergies&apos;, &apos;coreelectrons&apos;, &apos;atommasses&apos;, &apos;atomcharges&apos;, &apos;nbasis&apos;, &apos;State&apos;, &apos;Sequence Number&apos;, &apos;Atomic_Numbers&apos;, &apos;scfvalues&apos;, &apos;scftargets&apos;, &apos;Quadrupole&apos;, &apos;Multiplicity&apos;, &apos;Date&apos;, &apos;Basis_Set&apos;, &apos;Hf&apos;, &apos;Computer_System&apos;, &apos;Type_Of_Run&apos;]
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div><div class="fragment">
+    
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[31]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight"><pre><span class="n">tri_xqc</span><span class="o">.</span><span class="n">calc</span><span class="o">.</span><span class="n">max_data</span><span class="p">[</span><span class="s">&#39;Dipole&#39;</span><span class="p">]</span>
 </pre></div>
 
 </div>
@@ -4266,7 +3283,466 @@ In&nbsp;[34]:
 
 
 <div class="hbox output_area"><div class="prompt output_prompt">
-    Out[34]:</div>
+    Out[31]:</div>
+<div class="box-flex1 output_subarea output_pyout">
+
+
+<pre>
+[0.0060013, -0.0052874, 1.8702362]
+</pre>
+
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    </div></section><section>
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Optimising the geometry:</p>
+</div><div class="fragment">
+    
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight"><pre><span class="n">tri_opt</span> <span class="o">=</span> <span class="n">tri_xqc</span><span class="o">.</span><span class="n">calc</span><span class="o">.</span><span class="n">restart</span><span class="p">(</span><span class="n">opt</span><span class="o">=</span><span class="s">&#39;opt&#39;</span><span class="p">)</span>
+<span class="n">tri_opt</span><span class="o">.</span><span class="n">calc</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+
+<span class="n">check_calcs</span><span class="p">([</span><span class="n">tri_opt</span><span class="p">])</span>
+<span class="n">mols_to_html</span><span class="p">([</span><span class="n">tri_opt</span><span class="p">])</span>
+</pre></div>
+
+</div>
+</div>
+
+</div>
+    </div></section><section>
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Can compute a series of geometries along a path, compute frequencies for each geometry and plot them:</p>
+</div><div style=display:none>
+    
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[79]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight"><pre><span class="n">cd</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">clyde</span><span class="o">/</span><span class="n">Dropbox</span><span class="o">/</span><span class="n">Project</span> <span class="n">Stuff</span><span class="o">/</span><span class="n">Notebooks</span><span class="o">/</span><span class="n">test_cases</span><span class="o">/</span><span class="n">proj_freq_test</span>
+</pre></div>
+
+</div>
+</div>
+
+<div class="vbox output_wrapper">
+<div class="output vbox">
+
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_stream output_stdout">
+<pre>
+/home/clyde/Dropbox/Project Stuff/Notebooks/test_cases/proj_freq_test
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    </div><div style=display:none>
+    
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight"><pre><span class="o">%</span><span class="k">pylab</span> <span class="n">inline</span>
+<span class="kn">from</span> <span class="nn">ase.io</span> <span class="kn">import</span> <span class="n">read</span>
+<span class="kn">import</span> <span class="nn">copy</span>
+<span class="kn">from</span> <span class="nn">gausspy</span> <span class="kn">import</span> <span class="n">Gaussian</span>
+</pre></div>
+
+</div>
+</div>
+
+</div>
+    </div><div class="fragment">
+    
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[74]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight"><pre><span class="n">init_ts</span> <span class="o">=</span> <span class="n">read</span><span class="p">(</span><span class="s">&#39;init_ts.mol&#39;</span><span class="p">)</span>
+<span class="n">init_ts</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">charge</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span> <span class="c">#set charge of one cl to -1 so that overall charge in -1</span>
+<span class="n">init_ts</span><span class="o">.</span><span class="n">set_calculator</span><span class="p">(</span><span class="n">Gaussian</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s">&#39;init_ts&#39;</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s">&#39;HF&#39;</span><span class="p">,</span> <span class="n">basis</span><span class="o">=</span><span class="s">&#39;6-31G(d)&#39;</span><span class="p">,</span> <span class="n">symmetry</span><span class="o">=</span><span class="s">&#39;none&#39;</span><span class="p">,</span> <span class="n">opt</span><span class="o">=</span><span class="s">&#39;(ts calcfc noeigen verytight)&#39;</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s">&#39;freq&#39;</span><span class="p">))</span>
+<span class="n">init_ts</span><span class="o">.</span><span class="n">calc</span><span class="o">.</span><span class="n">set_job</span><span class="p">(</span><span class="n">nodes</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">memory</span><span class="o">=</span><span class="mi">8</span><span class="o">*</span><span class="mi">1400</span><span class="p">,</span> <span class="n">time</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">queue</span><span class="o">=</span><span class="s">&#39;pqmb&#39;</span><span class="p">,</span> <span class="n">version</span><span class="o">=</span><span class="s">&#39;g09&#39;</span><span class="p">)</span>
+<span class="c">#init_ts.calc.start(frc=True)</span>
+<span class="c">#check_calcs([init_ts], frc=True)</span>
+<span class="c">#gen_fchks([init_ts])</span>
+<span class="c">#check_calcs([init_ts], depth=&#39;heavy&#39;,frc=True)</span>
+
+<span class="n">irc_calc</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">init_ts</span><span class="p">)</span>
+<span class="n">irc_calc</span><span class="o">.</span><span class="n">calc</span><span class="o">.</span><span class="n">restart</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s">&#39;irc_2&#39;</span><span class="p">,</span> <span class="n">irc</span><span class="o">=</span><span class="s">&#39;(rcfc, forward, update=(Predictor=5,Corrector=5), maxpoints=30, stepsize=-4, verytight)&#39;</span><span class="p">,</span> <span class="n">opt</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
+<span class="n">irc_calc</span><span class="o">.</span><span class="n">calc</span><span class="o">.</span><span class="n">set_job</span><span class="p">(</span><span class="n">nodes</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">memory</span><span class="o">=</span><span class="mi">16</span><span class="o">*</span><span class="mi">2000</span><span class="p">,</span> <span class="n">time</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">queue</span><span class="o">=</span><span class="s">&#39;pqmb&#39;</span><span class="p">,</span> <span class="n">version</span><span class="o">=</span><span class="s">&#39;g09&#39;</span><span class="p">)</span>
+<span class="c">#irc_calc.calc.start(frc=True)</span>
+<span class="c">#check_calcs([irc_calc], frc=True)</span>
+<span class="c">#gen_fchks([irc_calc])</span>
+<span class="c">#check_calcs([irc_calc], depth=&#39;heavy&#39;, frc=True)</span>
+</pre></div>
+
+</div>
+</div>
+
+</div>
+    </div></section><section>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[80]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight"><pre><span class="n">irc_frames</span> <span class="o">=</span> <span class="n">irc_calc</span><span class="o">.</span><span class="n">calc</span><span class="o">.</span><span class="n">fchk_data</span><span class="o">.</span><span class="n">irc_frames</span>
+<span class="n">irc_steps</span> <span class="o">=</span> <span class="n">irc_calc</span><span class="o">.</span><span class="n">calc</span><span class="o">.</span><span class="n">fchk_data</span><span class="o">.</span><span class="n">irc_steps</span>
+<span class="k">for</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">proj_freq_calc</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">irc_frames</span><span class="p">):</span>
+    <span class="n">proj_freq_calc</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">charge</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span> <span class="c">#set charge of one cl to -1 so that overall charge in -1</span>
+    <span class="n">proj_freq_calc</span><span class="o">.</span><span class="n">set_calculator</span><span class="p">(</span><span class="n">Gaussian</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s">&#39;irc_point_{n}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">i</span><span class="p">),</span> <span class="n">method</span><span class="o">=</span><span class="s">&#39;HF&#39;</span><span class="p">,</span> <span class="n">basis</span><span class="o">=</span><span class="s">&#39;6-31G(d)&#39;</span><span class="p">,</span> <span class="n">symmetry</span><span class="o">=</span><span class="s">&#39;none&#39;</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s">&#39;projected&#39;</span><span class="p">))</span>
+    <span class="n">proj_freq_calc</span><span class="o">.</span><span class="n">calc</span><span class="o">.</span><span class="n">set_job</span><span class="p">(</span><span class="n">nodes</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">memory</span><span class="o">=</span><span class="mi">8</span><span class="o">*</span><span class="mi">1400</span><span class="p">,</span> <span class="n">time</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">queue</span><span class="o">=</span><span class="s">&#39;pqmb&#39;</span><span class="p">,</span> <span class="n">version</span><span class="o">=</span><span class="s">&#39;g09&#39;</span><span class="p">)</span>
+    <span class="c">#irc_calc.calc.start(frc=True)</span>
+<span class="c">#check_calcs(irc_frames,frc=True)</span>
+</pre></div>
+
+</div>
+</div>
+
+</div><div class="fragment">
+    
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[81]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight"><pre><span class="n">c_h_stretch</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">e</span> <span class="p">:</span><span class="n">e</span><span class="o">.</span><span class="n">calc</span><span class="o">.</span><span class="n">max_data</span><span class="p">[</span><span class="s">&#39;vibfreqs&#39;</span><span class="p">][</span><span class="o">-</span><span class="mi">3</span><span class="p">]</span>
+<span class="n">freqs</span> <span class="o">=</span> <span class="p">[</span><span class="n">c_h_stretch</span><span class="p">(</span><span class="n">f</span><span class="p">)</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">irc_frames</span><span class="p">[</span><span class="mi">1</span><span class="p">:]]</span>
+<span class="n">steps</span> <span class="o">=</span> <span class="n">irc_steps</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">steps</span><span class="p">,</span> <span class="n">freqs</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s">&#39;o&#39;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+
+<div class="vbox output_wrapper">
+<div class="output vbox">
+
+
+<div class="hbox output_area"><div class="prompt output_prompt">
+    Out[81]:</div>
+<div class="box-flex1 output_subarea output_pyout">
+
+
+<pre>
+[&lt;matplotlib.lines.Line2D at 0x5a811d0&gt;]
+</pre>
+
+</div>
+</div>
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_display_data">
+
+
+<img src="data:image/png;base64,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
+">
+
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    </div></section><section>
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>More complex calculation mixing classical and quantum mechanics:</p>
+</div><div style=display:none>
+    
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[84]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight"><pre><span class="n">cd</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">clyde</span><span class="o">/</span><span class="n">Dropbox</span><span class="o">/</span><span class="n">Project</span> <span class="n">Stuff</span><span class="o">/</span><span class="n">Notebooks</span><span class="o">/</span><span class="n">test_cases</span><span class="o">/</span><span class="n">oniom_test</span>
+</pre></div>
+
+</div>
+</div>
+
+<div class="vbox output_wrapper">
+<div class="output vbox">
+
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_stream output_stdout">
+<pre>
+/home/clyde/Dropbox/Project Stuff/Notebooks/test_cases/oniom_test
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    </div><div class="fragment">
+    
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[83]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight"><pre><span class="n">graph_4_4</span> <span class="o">=</span> <span class="n">read</span><span class="p">(</span><span class="s">&#39;B3LYP_631Gd_HF_STO3G_4_4_graphene.log&#39;</span><span class="p">)</span>
+<span class="n">graph_4_4_H</span> <span class="o">=</span> <span class="p">[</span><span class="mi">27</span><span class="p">,</span><span class="mi">28</span><span class="p">]</span>
+<span class="n">graph_4_4_mults</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="n">name</span> <span class="o">=</span> <span class="s">&#39;Oniom2233_NA_4_4_graphene&#39;</span>
+<span class="n">graph_4_4</span><span class="o">.</span><span class="n">set_calculator</span><span class="p">(</span><span class="n">Gaussian</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s">&#39;oniom(b3lyp/6-31g(d):am1)&#39;</span><span class="p">,</span><span class="n">basis</span><span class="o">=</span><span class="s">&#39;oniom&#39;</span><span class="p">))</span>
+<span class="n">graph_4_4</span><span class="o">.</span><span class="n">calc</span><span class="o">.</span><span class="n">oniom_coord_params</span><span class="p">[</span><span class="s">&#39;layers&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">graph_4_4_H</span><span class="p">]</span>
+<span class="n">graph_4_4</span><span class="o">.</span><span class="n">calc</span><span class="o">.</span><span class="n">oniom_coord_params</span><span class="p">[</span><span class="s">&#39;layer_mults&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">graph_4_4_mults</span>
+<span class="n">graph_4_4</span><span class="o">.</span><span class="n">calc</span><span class="o">.</span><span class="n">set_job</span><span class="p">(</span><span class="n">nodes</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">memory</span><span class="o">=</span><span class="mi">1400</span><span class="o">*</span><span class="mi">8</span><span class="p">,</span> <span class="n">time</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">queue</span><span class="o">=</span><span class="s">&#39;pqmb&#39;</span><span class="p">)</span>
+<span class="c">#graph_4_4.calc.start(frc=True)</span>
+
+<span class="n">check_calcs</span><span class="p">([</span><span class="n">graph_4_4</span><span class="p">])</span>
+<span class="n">mols_to_html</span><span class="p">([</span><span class="n">graph_4_4</span><span class="p">])</span>
+</pre></div>
+
+</div>
+</div>
+
+<div class="vbox output_wrapper">
+<div class="output vbox">
+
+
+<div class="hbox output_area"><div class="prompt output_prompt">
+    Out[83]:</div>
 <div class="box-flex1 output_subarea output_pyout">
 
 <div class="output_html rendered_html">
@@ -4300,7 +3776,7 @@ In&nbsp;[34]:
     </style>
     <body>
     <table bgcolor="white">
-    <col/><tr><td>triang_graphene_xqc</td><td><a href = "files/triang_graph/triang_graphene_xqc.com" target = "_blank">com</a></td><td><input type="button" value="Smart Log" id="triang_graphene_xqc" onclick="view_function(event, this.id)" /></td><td>Success</td></tr><tr><td>triang_graphene_xqc_stable_restart_1</td><td><a href = "files/triang_graph/triang_graphene_xqc_stable_restart_1.com" target = "_blank">com</a></td><td><input type="button" value="Smart Log" id="triang_graphene_xqc_stable_restart_1" onclick="view_function(event, this.id)" /></td><td>Success</td></tr><tr><td>triang_graphene_v2</td><td><a href = "files/triang_graph/triang_graphene_v2.com" target = "_blank">com</a></td><td><input type="button" value="Smart Log" id="triang_graphene_v2" onclick="view_function(event, this.id)" /></td><td>Success</td></tr><tr><td>triang_graphene_v2_restart_1</td><td><a href = "files/triang_graph/triang_graphene_v2_restart_1.com" target = "_blank">com</a></td><td><input type="button" value="Smart Log" id="triang_graphene_v2_restart_1" onclick="view_function(event, this.id)" /></td><td>Success</td></tr><tr><td>triang_graphene_v3</td><td><a href = "files/triang_graph/triang_graphene_v3.com" target = "_blank">com</a></td><td><input type="button" value="Smart Log" id="triang_graphene_v3" onclick="view_function(event, this.id)" /></td><td>Success</td></tr><tr><td>triang_graphene_v3_restart_1</td><td><a href = "files/triang_graph/triang_graphene_v3_restart_1.com" target = "_blank">com</a></td><td><input type="button" value="Smart Log" id="triang_graphene_v3_restart_1" onclick="view_function(event, this.id)" /></td><td>Success</td></tr><tr><td>triang_graphene_v4</td><td><a href = "files/triang_graph/triang_graphene_v4.com" target = "_blank">com</a></td><td><input type="button" value="Smart Log" id="triang_graphene_v4" onclick="view_function(event, this.id)" /></td><td>Success</td></tr><tr><td>triang_graphene_v4_restart_1</td><td><a href = "files/triang_graph/triang_graphene_v4_restart_1.com" target = "_blank">com</a></td><td><input type="button" value="Smart Log" id="triang_graphene_v4_restart_1" onclick="view_function(event, this.id)" /></td><td>Success</td></tr><tr><td>triang_graphene_v5</td><td><a href = "files/triang_graph/triang_graphene_v5.com" target = "_blank">com</a></td><td><input type="button" value="Smart Log" id="triang_graphene_v5" onclick="view_function(event, this.id)" /></td><td>Success</td></tr><tr><td>triang_graphene_v5_restart_1</td><td><a href = "files/triang_graph/triang_graphene_v5_restart_1.com" target = "_blank">com</a></td><td><input type="button" value="Smart Log" id="triang_graphene_v5_restart_1" onclick="view_function(event, this.id)" /></td><td>Success</td></tr>
+    <col/><tr><td>Oniom2233_NA_4_4_graphene</td><td><a href = "files/test_cases/oniom_test/Oniom2233_NA_4_4_graphene.com" target = "_blank">com</a></td><td><input type="button" value="Smart Log" id="Oniom2233_NA_4_4_graphene" onclick="view_function(event, this.id)" /></td><td>Success</td></tr>
     </table>
     </body>
 </div>
@@ -4312,49 +3788,425 @@ In&nbsp;[34]:
 </div>
 
 </div>
+    </div><div class="fragment">
+    
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[68]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight"><pre><span class="n">graph_4_4</span><span class="o">.</span><span class="n">calc</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s">&#39;HF&#39;</span><span class="p">]</span>
+</pre></div>
+
+</div>
+</div>
+
+<div class="vbox output_wrapper">
+<div class="output vbox">
+
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_stream output_stdout">
+<pre>
+0.0505167
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    </div><div class="fragment">
+    
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[71]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight"><pre><span class="n">graph_4_4</span><span class="o">.</span><span class="n">calc</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s">&#39;Dipole&#39;</span><span class="p">]</span>
+</pre></div>
+
+</div>
+</div>
+
+<div class="vbox output_wrapper">
+<div class="output vbox">
+
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_stream output_stdout">
+<pre>
+[-2.6e-06, -0.0001959, -1.1e-06]
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    </div></section><section>
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>If we run an unrestricted calculation but specify multiplicity=1 why is this different to a restricted calculation - why do we get some net spin (see calc.max_data['S2A'])? This is an error associated with unrestricted calcs, S2A attempts to correct for it but doesn't quite get to zero.</p>
-<p>Is there a keyword that allows guassian to pick the lowest energy multiplicity? No.</p>
+<p>Generated input file:</p>
+</div><div class="fragment">
+    
+<div class="text_cell_render border-box-sizing rendered_html">
+<pre><code>#p gfprint pop=full oniom(b3lyp/6-31g(d):am1) 
+
+Gaussian input prepared by ASE
+
+0 1  0 1 
+C         0        15.4257651251        2.3660368853        7.8384545740 L 
+C         0        15.4399858576        2.3618479500        9.1787619152 L 
+C         0        16.6956891611        2.3195867221        9.9599235311 L 
+C         0        16.6986838066        2.3155584620       11.2834932851 L 
+C         0        15.4465288261        2.3530508875       12.0705717419 L 
+C         0        15.4383733917        2.3490869530       13.4109303747 L 
+C         0        12.8969729314        2.4584041269        3.5633161667 L 
+C         0        12.9261641394        2.4536573937        4.9624561854 L 
+C         0        14.1620911607        2.4121183436        5.7100715652 L 
+C         0        14.1806478338        2.4078667480        7.0654928214 L 
+C         0        12.9294474296        2.4458269958        7.8085554985 L 
+C         0        12.9356130243        2.4417339585        9.2111858192 L H    28
+C         0        14.1815948926        2.3998075256        9.9428726805 L 
+C         0        14.1846935862        2.3956412609       11.3124082292 L 
+C         0        12.9420359534        2.4330968556       12.0499673035 L H    29
+C         0        12.9422174935        2.4286548673       13.4526101376 L 
+C         0        14.1967670263        2.3861921010       14.1897586638 L 
+C         0        14.1843440767        2.3821989618       15.5452508317 L 
+C         0        12.9518133728        2.4191732255       16.2986900912 L 
+C         0        12.9289539838        2.4154143161       17.6979509637 L 
+C         0        11.6920972629        2.4988249240        2.8819301728 L 
+C         0        10.4903131898        2.5352327345        3.5690008056 L 
+C         0        10.4674773280        2.5321538097        4.9682529736 L 
+C         0        11.6984305985        2.4909384580        5.6732611570 L 
+C         0        11.7016838348        2.4869565790        7.1057603699 L 
+C         0        10.4771198504        2.5241590218        7.8143477655 L 
+C         0        10.4773199824        2.5202889204        9.2169818780 L H    28
+C         0        11.7080713901        2.4789383283        9.9213648031 H 
+C         0        11.7112937874        2.4746042290       11.3455898563 H 
+C         0        10.4837428749        2.5116503420       12.0557734002 L H    29
+C         0        10.4898898132        2.5069849439       13.4583916069 L 
+C         0        11.7176472014        2.4654893453       14.1611910098 L 
+C         0        11.7208763135        2.4607575456       15.5936880003 L 
+C         0        10.4931264029        2.4976671684       16.3044969070 L 
+C         0        10.5222940512        2.4922392656       17.7036242897 L 
+C         0        11.7271747237        2.4516764294       18.3850153989 L 
+C         0         9.2349534923        2.5694744681        5.7217011384 L 
+C         0         9.2225542779        2.5662066802        7.0771908468 L 
+C         0         7.9809643033        2.6038425698        7.8560230956 L 
+C         0         7.9728253268        2.6003941436        9.1963827586 L 
+C         0         9.2346635968        2.5578867594        9.9545490474 L 
+C         0         9.2377622319        2.5537192158       11.3240793148 L 
+C         0         7.9793681652        2.5915939298       12.0881923351 L 
+C         0         7.9935723153        2.5868865656       13.4284975744 L 
+C         0         9.2386732895        2.5445286357       14.2014601907 L 
+C         0         9.2572061520        2.5395510399       15.5568747110 L 
+C         0         6.7206818650        2.6382567223        9.9834623041 L 
+C         0         6.7236764628        2.6342276314       11.3070318422 L 
+H         0         9.5556333477        2.5668524587        3.0239112041 L 
+H         0         9.5900912339        2.5205377582       18.2531204332 L 
+H         0         8.3036851746        2.6006854249        5.1704096663 L 
+H         0         7.0495574266        2.6351793751        7.3046105423 L 
+H         0         7.0646707660        2.6148609121       13.9842996197 L 
+H         0         8.3284424271        2.5673938342       16.1125543103 L 
+H         0         5.7913555567        2.6698783914        9.4282312494 L 
+H         0         5.7968724667        2.6624550354       11.8666445780 L 
+H         0        16.3546593631        2.3378387218        7.2826516764 L 
+H         0        17.6225082269        2.2918328214        9.4003120663 L 
+H         0        17.6280252068        2.2844106595       11.8387258665 L 
+H         0        16.3697732224        2.3175341188       13.9623424318 L 
+H         0        13.8291783835        2.4300894640        3.0138252285 L 
+H         0        15.0908455080        2.3839553947        5.1543925526 L 
+H         0        15.1156030477        2.3506692344       16.0965398275 L 
+H         0        13.8636363939        2.3837864161       18.2430358254 L 
+H         0        11.6896407178        2.5020066299        1.7991900876 L 
+H         0        11.7296183743        2.4482884028       19.4677549007 L </code></pre>
+</div>
+    </div></section><section>
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Parsed output file:</p>
+</div><div class="fragment">
+    
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[87]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight"><pre><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s">&#39;Oniom2233_NA_4_4_graphene.log&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">log_f</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">log_f</span><span class="o">.</span><span class="n">readlines</span><span class="p">()))</span>
+</pre></div>
+
+</div>
+</div>
+
+<div class="vbox output_wrapper">
+<div class="output vbox">
+
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_stream output_stdout">
+<pre>
+21461
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    </div></section><section>
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>An example notebook including comments:</p>
 </div></section>
     </section><section>
     <section>
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Conclusions-and-Future-work:">Conclusions and Future work:<a class="anchor-link" href="#Conclusions-and-Future-work:">&#182;</a></h3>
 </div>
-</section>
+<div class="fragment">
+    
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Currently can run a large subset of Gaussian through the notebook.</p>
+<p>Can extract all computed data and analyse and visualize them with the Scientific Python stack.</p>
+<p>Can visualize molecular structures and orbitals from within the notebook.</p>
+<p>Have an effective API for controlling Gaussian.</p>
+</div>
+    </div></section><section>
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Would like to extend the notebook so that individual pages connected on a tree.</p>
+<p>Allowing the entire research process to be included - make the notebook into a real notebook rather than just a continuously updated form of curated output.</p>
+<p>Have analysis nodes implicitly running code inherited from data generation nodes.</p>
+<p>When publishing a project could include the full tree and the final trajectory through it. Meaning all the tricks are included if people want to see them.</p>
+</div><div style=display:none>
+    
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[77]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight"><pre><span class="n">cd</span> <span class="o">~/</span><span class="n">Project</span><span class="o">/</span><span class="n">Talks</span><span class="o">/</span><span class="n">Pydata_2014</span><span class="o">/</span>
+</pre></div>
+
+</div>
+</div>
+
+<div class="vbox output_wrapper">
+<div class="output vbox">
+
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_stream output_stdout">
+<pre>
+/home/clyde/Dropbox/Project Stuff/Talks/Pydata_2014
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    </div></section>
     </section><section>
     <section>
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">
-In&nbsp;[]:
+In&nbsp;[46]:
 </div>
 <div class="input_area box-flex1">
-<div class="highlight"><pre><span class="n">Do</span> <span class="n">new</span> <span class="n">formats</span> <span class="n">of</span> <span class="n">allow</span> <span class="n">us</span> <span class="n">to</span> <span class="n">include</span> <span class="n">implict</span> <span class="n">knowledge</span> <span class="n">only</span> <span class="n">achievable</span> <span class="n">by</span> <span class="n">interning</span> <span class="n">at</span> <span class="n">different</span> <span class="n">groups</span> <span class="n">explicitly</span> <span class="n">without</span> <span class="n">further</span> <span class="n">diluting</span> <span class="n">scientific</span> <span class="n">knowledge</span><span class="err">?</span>
-   <span class="n">Notebook</span> <span class="o">-&gt;</span> <span class="n">Mindmap</span><span class="err">?</span>
+<div class="highlight"><pre><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Javascript</span>
+
+<span class="c">#fetch d3 from cloudflare</span>
+<span class="n">Javascript</span><span class="p">(</span><span class="s">&quot;&quot;&quot;$.getScript(&#39;//cdnjs.cloudflare.com/ajax/libs/d3/3.2.2/d3.v3.min.js&#39;)&quot;&quot;&quot;</span><span class="p">)</span>
 </pre></div>
 
 </div>
 </div>
 
+<div class="vbox output_wrapper">
+<div class="output vbox">
+
+
+<div class="hbox output_area"><div class="prompt output_prompt">
+    Out[46]:</div>
+<div class="box-flex1 output_subarea output_pyout">
+
+
+<pre>
+&lt;IPython.core.display.Javascript at 0x48dba90&gt;
+</pre>
+
 </div>
+</div>
+
+</div>
+</div>
+
+</div></section><section>
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">
-In&nbsp;[]:
+In&nbsp;[47]:
 </div>
 <div class="input_area box-flex1">
-<div class="highlight"><pre><span class="n">Several</span> <span class="n">other</span> <span class="n">relevant</span> <span class="n">python</span> <span class="n">packages</span> <span class="n">covering</span> <span class="n">molecular</span> <span class="n">dynamics</span><span class="p">,</span> <span class="n">chemoinformatics</span><span class="o">.</span> <span class="n">Lots</span> <span class="n">of</span> <span class="n">possibilities</span><span class="o">.</span>
+<div class="highlight"><pre><span class="o">%%</span><span class="k">html</span>
+<span class="o">&lt;</span><span class="n">style</span><span class="o">&gt;</span>
+
+<span class="o">.</span><span class="n">node</span> <span class="p">{</span>
+  <span class="n">stroke</span><span class="p">:</span> <span class="c">#fff;</span>
+  <span class="n">stroke</span><span class="o">-</span><span class="n">width</span><span class="p">:</span> <span class="mf">1.5</span><span class="n">px</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="o">.</span><span class="n">link</span> <span class="p">{</span>
+  <span class="n">stroke</span><span class="p">:</span> <span class="c">#999;</span>
+  <span class="n">stroke</span><span class="o">-</span><span class="n">opacity</span><span class="p">:</span> <span class="o">.</span><span class="mi">6</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="o">&lt;/</span><span class="n">style</span><span class="o">&gt;</span>
 </pre></div>
 
 </div>
 </div>
 
+<div class="vbox output_wrapper">
+<div class="output vbox">
+
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_display_data">
+
+<div class="output_html rendered_html">
+<style>
+
+.node {
+  stroke: #fff;
+  stroke-width: 1.5px;
+}
+
+.link {
+  stroke: #999;
+  stroke-opacity: .6;
+}
+</style>
+</div>
+
+</div>
+</div>
+
+</div>
+</div>
+
+</div></section><section>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[48]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight"><pre><span class="o">%%</span><span class="k">javascript</span>
+<span class="n">container</span><span class="o">.</span><span class="n">show</span><span class="p">();</span>
+
+<span class="n">var</span> <span class="n">e</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+
+<span class="n">var</span> <span class="n">width</span> <span class="o">=</span> <span class="mi">960</span><span class="p">,</span>
+    <span class="n">height</span> <span class="o">=</span> <span class="mi">500</span><span class="p">,</span>
+    <span class="n">fill</span> <span class="o">=</span> <span class="n">d3</span><span class="o">.</span><span class="n">scale</span><span class="o">.</span><span class="n">category10</span><span class="p">(),</span>
+    <span class="n">nodes</span> <span class="o">=</span> <span class="n">d3</span><span class="o">.</span><span class="n">range</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">Object</span><span class="p">);</span>
+
+<span class="n">var</span> <span class="n">color</span> <span class="o">=</span> <span class="n">d3</span><span class="o">.</span><span class="n">scale</span><span class="o">.</span><span class="n">category20</span><span class="p">();</span>
+
+<span class="n">var</span> <span class="n">force</span> <span class="o">=</span> <span class="n">d3</span><span class="o">.</span><span class="n">layout</span><span class="o">.</span><span class="n">force</span><span class="p">()</span>
+    <span class="o">.</span><span class="n">charge</span><span class="p">(</span><span class="o">-</span><span class="mi">120</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">linkDistance</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">size</span><span class="p">([</span><span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">]);</span>
+
+<span class="n">var</span> <span class="n">svg</span> <span class="o">=</span> <span class="n">d3</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s">&quot;svg&quot;</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">attr</span><span class="p">(</span><span class="s">&quot;width&quot;</span><span class="p">,</span> <span class="n">width</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">attr</span><span class="p">(</span><span class="s">&quot;height&quot;</span><span class="p">,</span> <span class="n">height</span><span class="p">)</span>
+
+<span class="n">d3</span><span class="o">.</span><span class="n">json</span><span class="p">(</span><span class="s">&quot;/files/project_v2.json&quot;</span><span class="p">,</span> <span class="n">function</span><span class="p">(</span><span class="n">error</span><span class="p">,</span> <span class="n">graph</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">force</span>
+      <span class="o">.</span><span class="n">nodes</span><span class="p">(</span><span class="n">graph</span><span class="o">.</span><span class="n">nodes</span><span class="p">)</span>
+      <span class="o">.</span><span class="n">links</span><span class="p">(</span><span class="n">graph</span><span class="o">.</span><span class="n">links</span><span class="p">)</span>
+      <span class="o">.</span><span class="n">start</span><span class="p">();</span>
+
+  <span class="n">var</span> <span class="n">link</span> <span class="o">=</span> <span class="n">svg</span><span class="o">.</span><span class="n">selectAll</span><span class="p">(</span><span class="s">&quot;.link&quot;</span><span class="p">)</span>
+      <span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="n">graph</span><span class="o">.</span><span class="n">links</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">enter</span><span class="p">()</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s">&quot;line&quot;</span><span class="p">)</span>
+      <span class="o">.</span><span class="n">attr</span><span class="p">(</span><span class="s">&quot;class&quot;</span><span class="p">,</span> <span class="s">&quot;link&quot;</span><span class="p">)</span>
+      <span class="o">.</span><span class="n">style</span><span class="p">(</span><span class="s">&quot;stroke-width&quot;</span><span class="p">,</span> <span class="n">function</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">Math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">value</span><span class="p">);</span> <span class="p">});</span>
+
+  <span class="n">var</span> <span class="n">node</span> <span class="o">=</span> <span class="n">svg</span><span class="o">.</span><span class="n">selectAll</span><span class="p">(</span><span class="s">&quot;.node&quot;</span><span class="p">)</span>
+      <span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="n">graph</span><span class="o">.</span><span class="n">nodes</span><span class="p">)</span>
+      <span class="o">.</span><span class="n">enter</span><span class="p">()</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s">&quot;a&quot;</span><span class="p">)</span>
+      <span class="o">.</span><span class="n">attr</span><span class="p">(</span><span class="s">&quot;class&quot;</span><span class="p">,</span> <span class="s">&quot;node&quot;</span><span class="p">)</span>
+      <span class="o">.</span><span class="n">attr</span><span class="p">(</span><span class="s">&quot;xlink:href&quot;</span><span class="p">,</span> <span class="n">function</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">d</span><span class="o">.</span><span class="n">url</span><span class="p">;</span> <span class="p">})</span>
+      <span class="o">.</span><span class="n">attr</span><span class="p">(</span><span class="s">&quot;target&quot;</span><span class="p">,</span> <span class="s">&quot;_blank&quot;</span><span class="p">)</span>
+      <span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="n">force</span><span class="o">.</span><span class="n">drag</span><span class="p">);</span>
+  <span class="n">node</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s">&quot;circle&quot;</span><span class="p">)</span>
+      <span class="o">.</span><span class="n">attr</span><span class="p">(</span><span class="s">&quot;r&quot;</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+      <span class="o">.</span><span class="n">style</span><span class="p">(</span><span class="s">&quot;fill&quot;</span><span class="p">,</span> <span class="n">function</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">color</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">group</span><span class="p">);</span> <span class="p">})</span>
+
+  <span class="n">node</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s">&quot;title&quot;</span><span class="p">)</span>
+      <span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">d</span><span class="o">.</span><span class="n">name</span><span class="p">;</span> <span class="p">});</span>
+
+  <span class="n">force</span><span class="o">.</span><span class="n">on</span><span class="p">(</span><span class="s">&quot;tick&quot;</span><span class="p">,</span> <span class="n">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">link</span><span class="o">.</span><span class="n">attr</span><span class="p">(</span><span class="s">&quot;x1&quot;</span><span class="p">,</span> <span class="n">function</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">d</span><span class="o">.</span><span class="n">source</span><span class="o">.</span><span class="n">x</span><span class="p">;</span> <span class="p">})</span>
+        <span class="o">.</span><span class="n">attr</span><span class="p">(</span><span class="s">&quot;y1&quot;</span><span class="p">,</span> <span class="n">function</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">d</span><span class="o">.</span><span class="n">source</span><span class="o">.</span><span class="n">y</span><span class="p">;</span> <span class="p">})</span>
+        <span class="o">.</span><span class="n">attr</span><span class="p">(</span><span class="s">&quot;x2&quot;</span><span class="p">,</span> <span class="n">function</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">d</span><span class="o">.</span><span class="n">target</span><span class="o">.</span><span class="n">x</span><span class="p">;</span> <span class="p">})</span>
+        <span class="o">.</span><span class="n">attr</span><span class="p">(</span><span class="s">&quot;y2&quot;</span><span class="p">,</span> <span class="n">function</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">d</span><span class="o">.</span><span class="n">target</span><span class="o">.</span><span class="n">y</span><span class="p">;</span> <span class="p">});</span>
+
+    <span class="n">node</span><span class="o">.</span><span class="n">attr</span><span class="p">(</span><span class="s">&quot;transform&quot;</span><span class="p">,</span> <span class="n">function</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="s">&quot;translate(&quot;</span> <span class="o">+</span> <span class="n">d</span><span class="o">.</span><span class="n">x</span> <span class="o">+</span> <span class="s">&quot;,&quot;</span> <span class="o">+</span> <span class="n">d</span><span class="o">.</span><span class="n">y</span> <span class="o">+</span> <span class="s">&quot;)&quot;</span><span class="p">;</span> <span class="p">});</span>
+  <span class="p">});</span>
+<span class="p">});</span>
+</pre></div>
+
+</div>
+</div>
+
+<div class="vbox output_wrapper">
+<div class="output vbox">
+
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_display_data">
+
+
+<pre>
+&lt;IPython.core.display.Javascript at 0x4ba7e50&gt;
+</pre>
+
+</div>
+</div>
+
+</div>
+</div>
+
+</div></section><section>
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Gaussian API needs polishing.</p>
+<p>ASE + Molmod interplay needs to be thought about.</p>
+<p>Several other relevant python packages covering molecular dynamics and chemoinformaticsist exist.</p>
+<p>Lots of possibilities.</p>
 </div></section>
     </section><section>
     <section>
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Thanks to supervisor Mike Bearpark and the rest of Bearpark photochemistry group. The EPSRC and to all of you.</p>
+<p>Many thanks to my supervisor Mike Bearpark and the rest of Bearpark photochemistry group.</p>
+<p>The EPSRC</p>
+<p>And to all of you.</p>
+<p>Questions?</p>
 </div></section>
     </section>
 </div>
