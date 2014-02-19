@@ -1,0 +1,50 @@
+digraph {
+
+  node [    fillcolor=cornflowerblue,
+            fontcolor=navy,
+            shape=diamond,
+            style=filled];
+
+  ccnotebook [  fillcolor=floralwhite,
+                fontcolor=navy,
+                label="ccnotebook",
+                shape=box];
+
+  ASE [  shape=box
+            label="ASE"
+            fillcolor=darkgoldenrod2];
+
+  cclib [  shape=box
+            label="cclib"
+            fillcolor=darkgoldenrod2];
+
+  molmod [label="molmod"
+          fillcolor=darkgoldenrod2];
+ 
+  pybel [label="pybel"];
+
+  bizkit [label="Bizkit"]
+
+  pbs_util [label="pbs_util"];
+
+  pygauss [fillcolor=springgreen
+           label="pygauss"
+           shape=circle];
+  
+  pyoniom [label="pyoniom"]
+
+  ipython [label="IPython Notebook"
+           fillcolor="darkgoldenrod2"
+           shape=box]
+
+  cclib  -> ccnotebook;
+  ASE  -> ccnotebook;
+  pbs_util -> pygauss
+  molmod  -> pygauss;
+  bizkit  -> pyoniom;
+  pybel   -> pyoniom;
+  molmod  -> pyoniom;
+  pyoniom -> pygauss;
+  pygauss -> ASE;
+  ccnotebook -> ipython;
+}
