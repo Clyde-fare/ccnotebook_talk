@@ -1,0 +1,52 @@
+digraph {
+
+  node [    fillcolor=cornflowerblue,
+            fontcolor=navy,
+            shape=diamond,
+            style=filled];
+
+  Step1a [  fillcolor=darkgoldenrod2,
+            fontcolor=navy,
+            label="Build Molecule",
+            shape=box];
+
+  Step1b [  shape=box
+            label="Download Structure"
+            fillcolor=darkgoldenrod2];
+
+  Step2b [  shape=box
+            label="Preprocess Structure"
+            fillcolor=darkgoldenrod2];
+
+  Step3 [   style=filled,
+            fillcolor=grey80,
+            color=grey80,
+            shape=circle,
+            fontcolor=navy
+            label="Build Input File"];
+ 
+  Step4 [ label="Build Job Script"];
+
+  Step5 [label="Submit Calculation"];
+
+  Step6 [label="Examine output"]
+
+  Step7 [label="Extract output"]
+
+ 
+  Step1a  -> Step3;
+  Step1b  -> Step2b;
+  Step2b  -> Step3;
+  Step3   -> Step4;
+  Step4   -> Step5;
+  Step5   -> Step6;
+  Step6   -> Step7;
+  Step6   -> Step3 [label=Problem];
+  Step7   -> Step3 [label="Further Calculation"];
+
+  End [ shape=rectangle,
+        fillcolor=springgreen1,
+        fontcolor=navy
+        label="Analyse data"];
+  Step7 -> End;
+}
