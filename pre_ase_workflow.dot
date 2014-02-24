@@ -19,10 +19,11 @@ digraph {
             fillcolor=darkgoldenrod2];
 
   Step3 [   style=filled,
-            fillcolor=grey80,
+            fillcolor=yellow,
             color=grey80,
             shape=circle,
             fontcolor=navy
+            fontsize=18
             label="Build Input File"];
  
   Step4 [ label="Build Job Script"];
@@ -41,8 +42,8 @@ digraph {
   Step4   -> Step5;
   Step5   -> Step6;
   Step6   -> Step7;
-  Step6   -> Step3 [label=Problem];
-  Step7   -> Step3 [label="Further Calculation"];
+  Step6   -> Step3 [label="  Problem"];
+  Step7   -> Step3 [label="  Further Calculation"];
 
   End [ shape=rectangle,
         fillcolor=springgreen1,

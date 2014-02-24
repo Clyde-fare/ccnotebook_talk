@@ -1,0 +1,141 @@
+{
+    "links": [
+        {
+            "source": 0,
+            "target": 1,
+            "value": 1
+        },
+        {
+            "source": 2,
+            "target": 2,
+            "value": 1
+        },
+        {
+            "source": 2,
+            "target": 3,
+            "value": 1
+        },
+        {
+            "source": 2,
+            "target": 4,
+            "value": 1
+        },
+        {
+            "source": 1,
+            "target": 5,
+            "value": 1
+        },
+        {
+            "source": 6,
+            "target": 7,
+            "value": 1
+        },
+        {
+            "source": 7,
+            "target": 5,
+            "value": 1
+        },
+        {
+            "source": 8,
+            "target": 6,
+            "value": 1
+        },
+        {
+            "source": 9,
+            "target": 6,
+            "value": 1
+        },
+        {
+            "source": 10,
+            "target": 6,
+            "value": 1
+        },
+        {
+            "source": 11,
+            "target": 6,
+            "value": 1
+        },
+        {
+            "source": 12,
+            "target": 7,
+            "value": 1
+        },
+        {
+            "source": 13,
+            "target": 5,
+            "value": 1
+        }
+    ],
+    "nodes": [
+        {
+            "group": 4,
+            "name": "Final",
+            "url": "Final.ipynb"
+        },
+        {
+            "group": 0,
+            "name": "analysis",
+            "url": "analysis.ipynb"
+        },
+        {
+            "group": 2,
+            "name": "IPython mindmap Project",
+            "url": "IPython mindmap Project.ipynb"
+        },
+        {
+            "group": 2,
+            "name": "IPython mindmap Project2",
+            "url": "notebooks/IPython mindmap Project2.ipynb"
+        },
+        {
+            "group": 2,
+            "name": "networkx_imagemaps",
+            "url": "../Project/Notebooks/test_cases/networkx_imagemaps.ipynb"
+        },
+        {
+            "group": 2,
+            "name": "calculations_3",
+            "url": "calculations_3.ipynb"
+        },
+        {
+            "group": 2,
+            "name": "calculations",
+            "url": "calculations.ipynb"
+        },
+        {
+            "group": 2,
+            "name": "calculations_2",
+            "url": "calculations_2.ipynb"
+        },
+        {
+            "group": 1,
+            "name": "dead_end_1",
+            "url": "dead_end_1.ipynb"
+        },
+        {
+            "group": 1,
+            "name": "dead_end_2",
+            "url": "dead_end_2.ipynb"
+        },
+        {
+            "group": 1,
+            "name": "dead_end_3",
+            "url": "dead_end_3.ipynb"
+        },
+        {
+            "group": 1,
+            "name": "dead_end_4",
+            "url": "dead_end_4.ipynb"
+        },
+        {
+            "group": 1,
+            "name": "dead_end_5",
+            "url": "dead_end_5.ipynb"
+        },
+        {
+            "group": 1,
+            "name": "dead_end_6",
+            "url": "dead_end_6.ipynb"
+        }
+    ]
+}

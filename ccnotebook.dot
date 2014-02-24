@@ -31,7 +31,9 @@ digraph {
            label="pygauss"
            shape=circle];
   
-  pyoniom [label="pyoniom"]
+  jmol [fillcolor=red
+        label="jmol"
+        shape=box];
 
   ipython [label="IPython Notebook"
            fillcolor="darkgoldenrod2"
@@ -41,10 +43,9 @@ digraph {
   ASE  -> ccnotebook;
   pbs_util -> pygauss
   molmod  -> pygauss;
-  bizkit  -> pyoniom;
-  pybel   -> pyoniom;
-  molmod  -> pyoniom;
-  pyoniom -> pygauss;
+  bizkit  -> pygauss;
+  pybel   -> pygauss;
   pygauss -> ASE;
+  jmol    -> ccnotebook;
   ccnotebook -> ipython;
 }
